@@ -1,5 +1,5 @@
-﻿body {
-    background-color: darkcyan;
+body {
+    background-color: #00A19D;
 }
 #nav {
     padding: 2%;
@@ -8,30 +8,30 @@
     background-color: ;
 }
 #formLogin {
-    background-color: azure;
-    width:70%;
+    background-color: #FFF8E5;
+    width: 70%;
     margin-left: 15%;
     margin-right: 15%;
     padding: 4%;
-    border-radius: 100px 12px 100px 12px;
+    border-radius: 12px;
     margin-top: 3%;
 }
 #formLogin h3 {
     text-align: center;
-    color: crimson;
+    color: #E05D5D;
 }
 
 #lblUsuario, #lblSenha {
-    color: darkcyan;
+    color: #646464;
     margin-top: 2%;
 }
 #txtUsuario, #txtSenha {
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid crimson;
+    border-bottom: 2px solid #646464;
 }
 #btnLogin {
-    background-color: crimson;
+    background-color: #E05D5D;
     color: white;
     width: 40%;
     margin-left: 30%;
@@ -42,12 +42,9 @@
 }
 #recSenha {
     text-decoration: none;
-    color: deeppink;
+    color: #646464;
 }
 #aNovaConta {
     color: white;
     text-decoration: none;
 }
-
-
-
