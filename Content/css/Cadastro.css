@@ -1,0 +1,63 @@
+﻿body {
+    background-color: #00A19D;
+}
+#nav {
+    padding: 2%;
+    font-family: Verdana;
+    color: white;
+    background-color: ;
+}
+#formLogin {
+    background-color: #FFF8E5;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 4%;
+    border-radius: 12px;
+    margin-top: 3%;
+}
+#formLogin h3 {
+    text-align: center;
+    color: #E05D5D;
+}
+
+#lblUsuario, #lblSenha, #lblRepetirSenha {
+    color: #646464;
+    margin-top: 2%;
+}
+#txtUsuario, #txtSenha, #txtRepetirSenha {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #646464;
+}
+#btnCriar {
+    background-color: #E05D5D;
+    color: white;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+#btnCriar:hover {
+    background-color: darkred;
+}
+#btnVoltar {
+    background-color: #FFB344;
+    color: white;
+    width: 20%;
+    height: 35px;
+    margin-left: 30%;
+    margin-right: 30%;
+    border: none;
+    border-radius: 4px;
+}
+#recSenha {
+    text-decoration: none;
+    color: #646464;
+}
+#aNovaConta {
+    color: white;
+    text-decoration: none;
+}
+
+
+
