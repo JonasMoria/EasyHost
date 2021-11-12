@@ -38,7 +38,7 @@
             <div class="col-12 row">
                 <div class="form-group col-md-6 col-sm-12">
                     <label id="lblCadNomeEmpresa">Nome da sua empresa</label>
-                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" placeholder="Digite nome de sua empresa" />
+                    <asp:TextBox ID="txtCadNomeEmpresa" runat="server" CssClass="form-control" placeholder="Digite nome de sua empresa" />
                 </div>
                 <div class="form-group col-md-6 col-sm-12">
                     <label id="lblDoc">CPF/CNPJ</label>
