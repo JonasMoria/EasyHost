@@ -5,7 +5,6 @@
     padding: 2%;
     font-family: Verdana;
     color: white;
-    background-color: ;
 }
 #formLogin {
     background-color: #FFF8E5;
@@ -20,16 +19,16 @@
     text-align: center;
     color: #E05D5D;
 }
-
-#lblUsuario, #lblSenha, #lblRepetirSenha {
+.form-group span, label {
     color: #646464;
     margin-top: 2%;
 }
-#txtUsuario, #txtSenha, #txtRepetirSenha {
+.form-group input {
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid #646464;
+    border-bottom: 2px solid #646464
 }
+
 #btnCriar {
     background-color: #E05D5D;
     color: white;

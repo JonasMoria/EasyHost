@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
 
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -17,19 +17,37 @@
             <h1>EASYHOST</h1>
         </div>
         <section class="col-12" id="formLogin">
+
             <h3>Cadastre-se</h3>
+
             <div class="form-group">
-                <asp:Label ID="lblUsuario" runat="server" Text="Email" />
-                <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control" placeholder="usuario@exemplo.com" TextMode="Email" />
+                <asp:Label ID="lblCadUsuario" runat="server" Text="Email" />
+                <asp:TextBox ID="txtCadUsuario" runat="server" CssClass="form-control" placeholder="usuario@exemplo.com" TextMode="Email" />
             </div>
+
             <div class="form-group">
-                <label id="lblSenha">Senha</label>
-                <asp:TextBox ID="txtSenha" runat="server" CssClass="form-control" placeholder="Senha" TextMode="Password" />
+                <label id="lblCadSenha">Senha</label>
+                <asp:TextBox ID="txtCadSenha" runat="server" CssClass="form-control" placeholder="Senha" TextMode="Password" />
             </div>
+
             <div class="form-group">
-                <label id="lblRepetirSenha">Repita a sua senha</label>
-                <asp:TextBox ID="txtRepetirSenha" runat="server" CssClass="form-control" placeholder="Senha" TextMode="Password" />
+                <label id="lblCadRepetirSenha">Repita a sua senha</label>
+                <asp:TextBox ID="txtCadRepetirSenha" runat="server" CssClass="form-control" placeholder="Repita a Senha" TextMode="Password" />
             </div>
+
+            <div class="col-12 row">
+                <div class="form-group col-md-6 col-sm-12">
+                    <label id="lblCadNomeEmpresa">Nome da sua empresa</label>
+                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" placeholder="Digite nome de sua empresa" />
+                </div>
+                <div class="form-group col-md-6 col-sm-12">
+                    <label id="lblDoc">CPF/CNPJ</label>
+                    <asp:TextBox ID="txtDoc" runat="server" CssClass="form-control" placeholder="Digite seu CPF ou CNPJ" />
+                </div>
+            </div>
+
+
+
             <br />
             <asp:Button ID="btnCriar" runat="server" Text="Cadastrar" CssClass="btn" />
             <div style="margin-top: 3%; text-align: center">
@@ -40,7 +58,16 @@
             </div>
             <br />
         </section>
+        <footer class="col-12 text-center text-white" style="position: absolute; bottom: 10px">
+            EasyHost © <span id="ano">2021</span>
+        </footer>
 
+        <script>
+            const ano = document.getElementById('ano');
+            const anoAtual = new Date();
+
+            ano.innerHTML = anoAtual.getFullYear();
+        </script>
     </form>
 </body>
 </html>

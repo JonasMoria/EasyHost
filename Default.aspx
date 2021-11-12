@@ -1,12 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
-
+﻿
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
 
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>EasyHost</title>
+    <title>EasyHost | Login</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/css/Default.css" rel="stylesheet" />
 </head>
@@ -30,7 +29,7 @@
                 <asp:TextBox ID="txtSenha" runat="server" CssClass="form-control" placeholder="Senha" TextMode="Password" />
             </div>
             <br />
-            <asp:Button ID="btnLogin" runat="server" Text="ENTRAR" CssClass="btn" OnClick="btnLogin_Click" />
+            <asp:Button ID="btnLogin" runat="server" Text="ENTRAR" CssClass="btn"  />
             <div style="margin-top: 3%; text-align: center">
                 <a id="recSenha" href="#">Ops! Esqueci a Senha</a>
                 <br />
