@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 ﻿
+=======
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+>>>>>>> 9bd4b8773ddab49b5ed5a09efd48547c7c11cbbe
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
@@ -20,6 +25,10 @@
 
         <section class="col-12" id="formLogin">
             <h3>BEM-VINDO(A)</h3>
+             <div class="form-group">
+                <asp:Label ID="lblTexto" runat="server" CssClass="text-danger" Text="E-mail ou senha incorretos!" Visible="false"></asp:Label>
+            </div>
+            <br />
             <div class="form-group">
                 <asp:Label ID="lblUsuario" runat="server" Text="Email" />
                 <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control" placeholder="usuario@exemplo.com" TextMode="Email" />
@@ -36,7 +45,7 @@
                 <hr style="color: black; height: 2px; width: 80%; margin-left: 10%" />
                 <button class="btn btn-success"><a id="aNovaConta" href="Pages/Cadastro.aspx">CRIAR CONTA</a></button>
             </div>
-            <br />
+            <br />          
         </section>
 
         <footer class="col-12 text-center text-white" style="position: absolute; bottom:10px">
