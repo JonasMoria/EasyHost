@@ -24,19 +24,19 @@
                 <br>
                 <br>
                 <section class="navItens" id="navItens">
-                    <a href="#"><i class="fa fa-calendar-alt" style="font-size: 7vh"></i>
+                    <a href="MapaReservas.aspx"><i class="fa fa-calendar-alt" style="font-size: 7vh"></i>
                         <br />
                         Mapa De Reservas</a>
-                    <a href="#"><i class="fa fa-address-card" style="font-size: 7vh"></i>
+                    <a href="Funcionarios.aspx"><i class="fa fa-address-card" style="font-size: 7vh"></i>
                         <br />
                         Funcionários</a>
-                    <a href="#"><i class="fa fa-user-friends" style="font-size: 7vh"></i>
+                    <a href="Hospedes.aspx"><i class="fa fa-user-friends" style="font-size: 7vh"></i>
                         <br />
                         Hóspedes</a>
-                    <a href="#"><i class="fa fa-bed" style="font-size: 7vh"></i>
+                    <a href="Quartos.aspx"><i class="fa fa-bed" style="font-size: 7vh"></i>
                         <br />
                         Quartos</a>
-                    <a href="#"><i class="fa fa-file-alt" style="font-size: 7vh"></i>
+                    <a href="Relatorios.aspx"><i class="fa fa-file-alt" style="font-size: 7vh"></i>
                         <br />
                         Relatórios</a>
                 </section>
