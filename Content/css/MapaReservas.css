@@ -1,0 +1,25 @@
+﻿
+.modal-content {
+    background-color: darkcyan;
+}
+
+.modal-title {
+    color: white;
+    font-size: 3vh;
+}
+.close {
+    color: white;
+    font-size: 3vh;
+}
+.modal-body {
+    padding: 4%;
+}
+.labels {
+    color: white;
+    background-color: crimson;
+    font-size: 2vh;
+    margin-bottom: 4%;
+    border-radius: 10px 10px 10px 10px;
+    width: 10vh;
+}
+

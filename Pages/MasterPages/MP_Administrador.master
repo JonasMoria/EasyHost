@@ -1,0 +1,92 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MP_Administrador.master.cs" Inherits="Pages_MasterPages_MP_Administrador" %>
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>EasyHost | Adm</title>
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Content/css/MenuLateral.css" rel="stylesheet" />
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div>
+
+            <%--MenuLateral--%>
+            <div class="menuLateral" id="menuLateral">
+                <button class="btnFechar" type="button" id="btnFechar">&times;</button>
+                <br>
+                <br>
+                <section class="navItens" id="navItens">
+                    <a href="#"><i class="fa fa-calendar-alt" style="font-size: 7vh"></i>
+                        <br />
+                        Mapa De Reservas</a>
+                    <a href="#"><i class="fa fa-address-card" style="font-size: 7vh"></i>
+                        <br />
+                        Funcionários</a>
+                    <a href="#"><i class="fa fa-user-friends" style="font-size: 7vh"></i>
+                        <br />
+                        Hóspedes</a>
+                    <a href="#"><i class="fa fa-bed" style="font-size: 7vh"></i>
+                        <br />
+                        Quartos</a>
+                    <a href="#"><i class="fa fa-file-alt" style="font-size: 7vh"></i>
+                        <br />
+                        Relatórios</a>
+                </section>
+            </div>
+            <%--Nav--%>
+            <nav class="navbar navbar-dark bg-dark col-12 row" style="margin-left: 5%; width: 100%">
+                <div class="col-2">
+                    <button id="btnAbrir" type="button" class="btnAbrir">&#9776</button>
+                </div>
+                <div class="col-6 text-center">
+                    <h2 style="color: white; padding-top: 1%">EASYHOST</h2>
+                </div>
+                <div class="col-4 row " style="float: right">
+                    <button type="button" class="btn btn-secondary col-4 m-2 color-white"><i class="fa fa-cog"></i></button>
+                    <asp:Button runat="server" CssClass="btn btn-danger col-4 m-2 color-white" Text="Sair" />
+                </div>
+            </nav>
+            <%--Script Para Abrir/Fechar o  Menu e Regular Exibição dos componentes--%>
+            <script>
+                var btnFechar = document.getElementById("btnFechar");
+                document.getElementById("btnFechar").style.display = "block";
+                document.getElementById("navItens").style.display = "block";
+                btnFechar.addEventListener('click', function (e) {
+                    var menu = document.getElementById("menuLateral").style;
+                    document.getElementById("btnFechar").style.display = "none";
+                    document.getElementById("navItens").style.display = "none";
+                    menu.width = "5%";
+                });
+            </script>
+            <script>
+                var btnAbrir = document.getElementById("btnAbrir");
+                document.getElementById("btnFechar").style.display = "none";
+                document.getElementById("navItens").style.display = "none";
+                btnAbrir.addEventListener('click', function (e) {
+                    var menu = document.getElementById("menuLateral").style;
+                    document.getElementById("btnFechar").style.display = "block";
+                    document.getElementById("navItens").style.display = "block";
+
+                    if (window.innerWidth < 840) {
+                        menu.width = "50%";
+                    } else {
+                        menu.width = "20%";
+                    }
+                });
+            </script>
+
+            <asp:ContentPlaceHolder ID="body" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+</body>
+</html>
