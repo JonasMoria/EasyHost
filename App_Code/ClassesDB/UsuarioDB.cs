@@ -42,7 +42,7 @@ public class UsuarioDB {
     /// <summary>
     /// Método de exclusão
     /// </summary>
-    /// <param name="codigo">código do usuário (PK)</param>
+    /// <param name="cpf">cpf do usuário (PK)</param>
     /// <returns>0 se for sucesso / -2 se for erro</returns>
     public static int Delete(int cpf)
     {
@@ -73,7 +73,7 @@ public class UsuarioDB {
             IDbConnection ObjConexao;
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
-            string sql = @"UPDATE USU_USUARIOS SET USU_EMAIL = ?email, USU_SENHA=?senha WHERE USU_CPF = ?cpf";
+            string sql = @"UPDATE USU_USUARIO SET USU_EMAIL = ?email, USU_SENHA=?senha WHERE USU_CPF = ?cpf";
             Comando = Mapped.Command(sql, ObjConexao);
             Comando.Parameters.Add(Mapped.Parameter("?email", usuario.Email));
             Comando.Parameters.Add(Mapped.Parameter("?senha", usuario.Senha));
