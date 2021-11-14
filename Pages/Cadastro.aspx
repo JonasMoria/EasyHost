@@ -49,7 +49,7 @@
 
 
             <br />
-            <asp:Button ID="btnCriar" runat="server" Text="Cadastrar" CssClass="btn" />
+            <asp:Button ID="btnCriar" runat="server" Text="Cadastrar" CssClass="btn" OnClick="btnCriar_Click"/>
             <div style="margin-top: 3%; text-align: center">
 
                 <br />
