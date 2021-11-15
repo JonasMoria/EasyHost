@@ -25,11 +25,23 @@
             </div>
         </section>
 
-        <%--Botão Nova Reserva--%>
-        <section class="col-12 mt-5">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
-                <i class="fa fa-plus"></i>Nova Reserva 
-            </button>
+        <%--Botão Nova Reserva E Selecionar Quarto--%>
+        <section class="col-12 row mt-5">
+            <div class="col-5">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                    <i class="fa fa-plus"></i>Nova Reserva 
+                </button>
+            </div>
+            <div class="col-7">
+                <asp:DropDownList ID="QuartosDropList" CssClass="btn dropdown-toggle text-white" BackColor="DarkSlateGray"  runat="Server">
+                    <asp:ListItem Text="Selecionar Quarto" Value="1" />
+                    <asp:ListItem Text="Item 2" Value="2" />
+                    <asp:ListItem Text="Item 3" Value="3" />
+                    <asp:ListItem Text="Item 4" Value="4" />
+                    <asp:ListItem Text="Item 5" Value="5" />
+                </asp:DropDownList>
+            </div>
+
         </section>
 
         <!-- Modal -->
@@ -73,7 +85,7 @@
 
         <%--Mapa De Reservas--%>
         <section class="border">
-            <h1 style="text-align:center">AQUI FICA O CALENDÁRIO</h1>
+            <h1 style="text-align: center">AQUI FICA O CALENDÁRIO</h1>
         </section>
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
