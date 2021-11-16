@@ -20,12 +20,13 @@ public class UsuarioDB {
             IDbConnection ObjConexao;
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
-            string sql = @"INSERT INTO USU_USUARIO VALUES
-                        (0, ?email, ?senha, ?cpf, 0, ?nomeEmpresa)";
+            string sql = @"INSERT INTO usu_usuario VALUES
+                        (0, ?email, ?senha, ?adm_cpf, ?fun_cpf, ?nomeEmpresa)";
             Comando = Mapped.Command(sql, ObjConexao);
             Comando.Parameters.Add(Mapped.Parameter("?email", usuario.Email));
             Comando.Parameters.Add(Mapped.Parameter("?senha", usuario.Senha));
-            Comando.Parameters.Add(Mapped.Parameter("?cpf", usuario.CPF));
+            Comando.Parameters.Add(Mapped.Parameter("?adm_cpf", usuario.ADM_CPF));
+            Comando.Parameters.Add(Mapped.Parameter("?fun_cpf", usuario.FUN_CPF));
             Comando.Parameters.Add(Mapped.Parameter("?nomeEmpresa", usuario.NomeEmpresa));
             Comando.ExecuteNonQuery();
             ObjConexao.Dispose();
