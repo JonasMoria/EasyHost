@@ -8,7 +8,8 @@ public class Usuario {
   
     private string _Email;
     private string _Senha;
-    private string _CPF;
+    private string _ADM_CPF;
+    private string _FUN_CPF;
     private string _NomeEmpresa;
     
 
@@ -37,19 +38,33 @@ public class Usuario {
             _Senha = value;
         }
     }
-    public string CPF
+    public string ADM_CPF
     {
         get
         {
-            return _CPF;
+            return _ADM_CPF;
         }
 
         set
         {
-            _CPF = value;
+            _ADM_CPF = value;
+        }
+
+    }
+
+    public string FUN_CPF
+    {
+        get
+        {
+            return _FUN_CPF;
+        }
+
+        set
+        {
+            _FUN_CPF = value;
         }
     }
-         public string NomeEmpresa
+    public string NomeEmpresa
     {
         get
         {
