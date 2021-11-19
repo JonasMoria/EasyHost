@@ -26,6 +26,11 @@
             </div>
             <br />
 
+              <div class="form-group">
+                <asp:Label ID="lblTexto" runat="server" CssClass="text-danger" Text="" Visible="false"></asp:Label>
+            </div>
+            <br />
+
             <div class="form-group">
                 <asp:Label ID="lblCadUsuario" runat="server" Text="Email" />
                 <asp:TextBox ID="txtCadUsuario" runat="server" CssClass="form-control" placeholder="usuario@exemplo.com" TextMode="Email" />

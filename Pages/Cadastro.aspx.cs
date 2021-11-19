@@ -58,6 +58,14 @@ public partial class Pages_Cadastro : System.Web.UI.Page {
 
             lblTexto.Text = "Esse usuário já existe em nosso sistema";
             lblTexto.Visible = true;
+<<<<<<< HEAD
+=======
+        }
+        else
+        {
+            lblTexto.Text = "Erro no cadastro. Verifique seus dados";
+            lblTexto.Visible = true;
+>>>>>>> 512450c6c7aa16a9ff9f46caee1def8b5c9add76
         }
         else
         {
