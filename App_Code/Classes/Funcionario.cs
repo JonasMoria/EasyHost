@@ -6,8 +6,7 @@ using System.Web;
 /// <summary>
 /// Descrição resumida de Funcionario
 /// </summary>
-public class Funcionario
-{
+public class Funcionario {
 
     private string _CPF;
     private string _Nome;
@@ -15,76 +14,59 @@ public class Funcionario
     private string _Senha;
     private string _AdmCPF;
 
-    public Funcionario()
-    {
+    public Funcionario() {
         //
         // TODO: Adicionar lógica do construtor aqui
         //
     }
 
-    public string CPF
-    {
-        get
-        {
+    public string CPF {
+        get {
             return _CPF;
         }
 
-        set
-        {
+        set {
             _CPF = value;
         }
     }
 
-    public string Nome
-    {
-        get
-        {
+    public string Nome {
+        get {
             return _Nome;
         }
 
-        set
-        {
+        set {
             _Nome = value;
         }
     }
 
-    public string Email
-    {
-        get
-        {
+    public string Email {
+        get {
             return _Email;
         }
 
-        set
-        {
+        set {
             _Email = value;
         }
     }
 
-    public string Senha
-    {
-        get
-        {
+    public string Senha {
+        get {
             return _Senha;
         }
 
-        set
-        {
+        set {
             _Senha = value;
         }
     }
 
-    public string AdmCPF
-    {
-        get
-        {
+    public string AdmCPF {
+        get {
             return _AdmCPF;
         }
 
-        set
-        {
+        set {
             _AdmCPF = value;
         }
     }
-
 }

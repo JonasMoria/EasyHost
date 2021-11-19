@@ -6,73 +6,56 @@ using System.Web;
 /// <summary>
 /// Descrição resumida de Administrador
 /// </summary>
-public class Administrador
-{
+public class Administrador {
 
     private string _CPF;
     private string _Email;
     private string _Senha;
     private string _NomeEmpresa;
 
-    public Administrador()
-    {
+    public Administrador() {
         //
         // TODO: Adicionar lógica do construtor aqui
         //
     }
 
-        public string CPF
-    {
-        get
-        {
+    public string CPF {
+        get {
             return _CPF;
         }
 
-        set
-        {
+        set {
             _CPF = value;
         }
     }
 
-    public string Email
-    {
-        get
-        {
+    public string Email {
+        get {
             return _Email;
         }
 
-        set
-        {
+        set {
             _Email = value;
         }
     }
 
-    public string Senha
-    {
-        get
-        {
+    public string Senha {
+        get {
             return _Senha;
         }
 
-        set
-        {
+        set {
             _Senha = value;
         }
     }
 
-    public string NomeEmpresa
-    {
-        get
-        {
+    public string NomeEmpresa {
+        get {
             return _NomeEmpresa;
         }
 
-        set
-        {
+        set {
             _NomeEmpresa = value;
         }
     }
-
-
-
 }

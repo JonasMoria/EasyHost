@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Cadastro.aspx.cs" Inherits="Pages_Cadastro" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Cadastro.aspx.cs" Inherits="Pages_Cadastro" %>
 
 <!DOCTYPE html>
 
@@ -19,14 +19,8 @@
         <section class="col-12" id="formLogin">
 
             <h3>Cadastre-se</h3>
-            <asp:Label runat="server" ID="lblErro" Text="Erro, Não Foi Possivel Cadastrar" Visible="false" />
 
-              <div class="form-group">
-                <asp:Label ID="lblTexto" runat="server" CssClass="text-danger" Text="" Visible="false"></asp:Label>
-            </div>
-            <br />
-
-              <div class="form-group">
+            <div class="form-group">
                 <asp:Label ID="lblTexto" runat="server" CssClass="text-danger" Text="" Visible="false"></asp:Label>
             </div>
             <br />
@@ -56,11 +50,8 @@
                     <asp:TextBox ID="txtDoc" runat="server" CssClass="form-control" placeholder="Digite seu CPF ou CNPJ" />
                 </div>
             </div>
-
-
-
             <br />
-            <asp:Button ID="btnCriar" runat="server" Text="Cadastrar" CssClass="btn" OnClick="btnCriar_Click"/>
+            <asp:Button ID="btnCriar" runat="server" Text="Cadastrar" CssClass="btn" OnClick="btnCriar_Click" />
             <div style="margin-top: 3%; text-align: center">
 
                 <br />
@@ -76,7 +67,6 @@
         <script>
             const ano = document.getElementById('ano');
             const anoAtual = new Date();
-
             ano.innerHTML = anoAtual.getFullYear();
         </script>
     </form>
