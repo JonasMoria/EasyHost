@@ -21,6 +21,10 @@
         <%-- Form Para Cadastro De Funcionários--%>
         <section class="col-12 row mt-2">
             <div class="form-group">
+                <asp:Label ID="lblTexto" runat="server" CssClass="text-danger" Text="" Visible="false"></asp:Label>
+            </div>
+            <br />
+            <div class="form-group">
                 <asp:Label ID="lblNomeFuncionario" runat="server" Text="Nome" />
                 <asp:TextBox ID="txtCadFuncionario" runat="server" CssClass="form-control" placeholder="Nome do Funcionário" />
             </div>
