@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPages/MP_Administrador.master" AutoEventWireup="true" CodeFile="Hospedes.aspx.cs" Inherits="Pages_Hospedes" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPages/MP_Administrador.master" AutoEventWireup="true" CodeFile="Hospedes.aspx.cs" Inherits="Pages_Hospedes" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -22,6 +22,10 @@
         <%-- Form Para Cadastro De Hóspedes--%>
         <section class="col-12 row mt-2">
             <div class="form-group">
+                <asp:Label ID="lblTexto" runat="server" CssClass="text-danger" Text="" Visible="false"></asp:Label>
+            </div>
+            <br />
+            <div class="form-group">
                 <asp:Label ID="lblNomeHospede" runat="server" Text="Nome" />
                 <asp:TextBox ID="txtNomeHospede" runat="server" CssClass="form-control" placeholder="Nome do Hóspede" />
             </div>
@@ -30,7 +34,7 @@
                 <asp:TextBox ID="txtCelHospede" runat="server" CssClass="form-control" placeholder="Contato do Hóspede" />
             </div>
             <div style="margin-left: 3%; margin-top: 1%">
-                <asp:Button runat="server" ID="btnCadHospede" CssClass="btn btn-success text-white " Text="CADASTRAR" />
+                <asp:Button runat="server" ID="btnCadHospede" CssClass="btn btn-success text-white " Text="CADASTRAR" OnClick="btn_CadastrarHos_Click"/>
             </div>
         </section>
 
