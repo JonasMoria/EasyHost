@@ -11,6 +11,9 @@ public class Funcionario
 
     private string _CPF;
     private string _Nome;
+    private string _Email;
+    private string _Senha;
+    private string _AdmCPF;
 
     public Funcionario()
     {
@@ -42,6 +45,45 @@ public class Funcionario
         set
         {
             _Nome = value;
+        }
+    }
+
+    public string Email
+    {
+        get
+        {
+            return _Email;
+        }
+
+        set
+        {
+            _Email = value;
+        }
+    }
+
+    public string Senha
+    {
+        get
+        {
+            return _Senha;
+        }
+
+        set
+        {
+            _Senha = value;
+        }
+    }
+
+    public string AdmCPF
+    {
+        get
+        {
+            return _AdmCPF;
+        }
+
+        set
+        {
+            _AdmCPF = value;
         }
     }
 
