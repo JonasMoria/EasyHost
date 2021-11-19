@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Cadastro.aspx.cs" Inherits="Pages_Cadastro" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Cadastro.aspx.cs" Inherits="Pages_Cadastro" %>
 
 <!DOCTYPE html>
 
@@ -20,6 +20,11 @@
 
             <h3>Cadastre-se</h3>
 
+              <div class="form-group">
+                <asp:Label ID="lblTexto" runat="server" CssClass="text-danger" Text="" Visible="false"></asp:Label>
+            </div>
+            <br />
+
             <div class="form-group">
                 <asp:Label ID="lblCadUsuario" runat="server" Text="Email" />
                 <asp:TextBox ID="txtCadUsuario" runat="server" CssClass="form-control" placeholder="usuario@exemplo.com" TextMode="Email" />
@@ -27,12 +32,12 @@
 
             <div class="form-group">
                 <label id="lblCadSenha">Senha</label>
-                <asp:TextBox ID="txtCadSenha" runat="server" CssClass="form-control" placeholder="Senha" TextMode="Password" />
+                <asp:TextBox ID="txtCadSenha" runat="server" CssClass="form-control" placeholder="Digite a sua enha" TextMode="Password" />
             </div>
 
             <div class="form-group">
                 <label id="lblCadRepetirSenha">Repita a sua senha</label>
-                <asp:TextBox ID="txtCadRepetirSenha" runat="server" CssClass="form-control" placeholder="Repita a Senha" TextMode="Password" />
+                <asp:TextBox ID="txtCadRepetirSenha" runat="server" CssClass="form-control" placeholder="Repita a sua senha" TextMode="Password" />
             </div>
 
             <div class="col-12 row">
