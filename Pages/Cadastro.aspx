@@ -32,7 +32,7 @@
 
             <div class="form-group">
                 <label id="lblCadSenha">Senha</label>
-                <asp:TextBox ID="txtCadSenha" runat="server" CssClass="form-control" placeholder="Digite a sua enha" TextMode="Password" />
+                <asp:TextBox ID="txtCadSenha" runat="server" CssClass="form-control" placeholder="Digite a sua senha" TextMode="Password" />
             </div>
 
             <div class="form-group">

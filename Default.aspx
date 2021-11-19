@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
 <!DOCTYPE html>
 
@@ -36,7 +36,7 @@
             <br />
             <asp:Button ID="btnLogin" runat="server" Text="ENTRAR" CssClass="btn" OnClick="btnLogin_Click" />
             <div style="margin-top: 3%; text-align: center">
-                <a id="recSenha" href="#">Ops! Esqueci a Senha</a>
+                <a id="recSenha" href="/Pages/RecuperarSenha.aspx">Ops! Esqueci a Senha</a>
                 <br />
                 <hr style="color: black; height: 2px; width: 80%; margin-left: 10%" />
                 <button class="btn btn-success"><a id="aNovaConta" href="Pages/Cadastro.aspx">CRIAR CONTA</a></button>
