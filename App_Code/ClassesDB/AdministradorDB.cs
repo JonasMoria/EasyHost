@@ -9,6 +9,7 @@ using System.Web;
 /// </summary>
 public class AdministradorDB
 {
+
     public AdministradorDB()
     {
         //
@@ -16,7 +17,7 @@ public class AdministradorDB
         //
     }
 
-    public static int Insert(Administrador adm)
+    public static String Insert(Administrador administrador)
     {
         try
         {
@@ -24,19 +25,22 @@ public class AdministradorDB
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
             string sql = @"INSERT INTO adm_administrador VALUES
-                        (0, ?cpf, ?nome)";
+                        (?cpf, ?email, ?senha, ?nomeEmpresa)";
             Comando = Mapped.Command(sql, ObjConexao);
-            Comando.Parameters.Add(Mapped.Parameter("?cpf", adm.CPF));
-            Comando.Parameters.Add(Mapped.Parameter("?nome", adm.Nome));
+            Comando.Parameters.Add(Mapped.Parameter("?cpf", administrador.CPF));
+            Comando.Parameters.Add(Mapped.Parameter("?email", administrador.Email));
+            Comando.Parameters.Add(Mapped.Parameter("?senha", administrador.Senha));
+            Comando.Parameters.Add(Mapped.Parameter("?nomeEmpresa", administrador.NomeEmpresa));
             Comando.ExecuteNonQuery();
             ObjConexao.Dispose();
             Comando.Dispose();
             ObjConexao.Close();
-            return 0;
+            return "Sucesso";
         }
         catch (Exception e)
         {
-            return -2;
+            
+            return e.Message;
         }
     }
 
@@ -67,17 +71,17 @@ public class AdministradorDB
         }
     }
 
-    public static int Update(Administrador adm)
+    public static int Update(Administrador administrador)
     {
         try
         {
             IDbConnection ObjConexao;
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
-            string sql = @"UPDATE adm_administrador SET ADM_CPF = ?nome WHERE ADM_CPF = ?cpf";
+            string sql = @"UPDATE adm_administrador SET ADM_EMAIL = ?email WHERE ADM_CPF = ?cpf";
             Comando = Mapped.Command(sql, ObjConexao);
-            Comando.Parameters.Add(Mapped.Parameter("?cpf", adm.CPF));
-            Comando.Parameters.Add(Mapped.Parameter("?nome", adm.Nome));
+            Comando.Parameters.Add(Mapped.Parameter("?cpf", administrador.CPF));
+            Comando.Parameters.Add(Mapped.Parameter("?email", administrador.Email));
             Comando.ExecuteNonQuery();
             ObjConexao.Dispose();
             Comando.Dispose();
