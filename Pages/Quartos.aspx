@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPages/MP_Administrador.master" AutoEventWireup="true" CodeFile="Quartos.aspx.cs" Inherits="Pages_Quartos" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPages/MP_Administrador.master" AutoEventWireup="true" CodeFile="Quartos.aspx.cs" Inherits="Pages_Quartos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="../Content/css/Quartos.css" rel="stylesheet" />
@@ -20,12 +20,16 @@
 
         <%-- Form Para Cadastro De Quartos--%>
         <section class="col-12 row mt-2">
+             <div class="form-group">
+                <asp:Label ID="lblTexto" runat="server" CssClass="text-danger" Text="" Visible="false"></asp:Label>
+            </div>
+            <br />
             <div class="form-group">
                 <asp:Label ID="lblNomeQuarto" runat="server" Text="Nome" />
                 <asp:TextBox ID="txtNomeQuarto" runat="server" CssClass="form-control" placeholder="Nome/Número do Quarto" />
             </div>
             <div style="margin-left: 3%; margin-top: 1%">
-                <asp:Button runat="server" ID="btnCadQuarto" CssClass="btn btn-success text-white " Text="CADASTRAR" />
+                <asp:Button runat="server" ID="btnCadQuarto" CssClass="btn btn-success text-white" Text="CADASTRAR" Onclick="btn_CadastrarQua_Click"/>
             </div>
         </section>
 
