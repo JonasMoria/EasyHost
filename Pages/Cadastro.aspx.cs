@@ -15,30 +15,32 @@ public partial class Pages_Cadastro : System.Web.UI.Page {
     protected void btnCriar_Click(object sender, EventArgs e)
     {
 
-        Funcionario fun = new Funcionario();
-        fun.Nome = "0";
-        fun.CPF = "1";
-
         Administrador adm = new Administrador();
         adm.CPF = txtDoc.Text;
-        adm.Nome = "teste";
+        adm.Email = txtCadUsuario.Text;
+        adm.Senha = txtCadRepetirSenha.Text;
+        adm.NomeEmpresa = txtCadNomeEmpresa.Text;
 
-        
 
-        Usuario usu = new Usuario();
-        usu.Email = txtCadUsuario.Text;
-        usu.Senha = txtCadRepetirSenha.Text;
-        usu.ADM_CPF = txtDoc.Text;
-        usu.FUN_CPF = "0";
-        usu.NomeEmpresa = txtCadNomeEmpresa.Text;  
+       
 
-       if (usu.ADM_CPF != "")
+        if (AdministradorDB.Insert(adm).Equals("Sucesso") && adm.CPF != "" && adm.Email != "")
         {
-            FuncionarioDB.Insert(fun);
-            AdministradorDB.Insert(adm);
-            UsuarioDB.Insert(usu);
 
-            Response.Redirect(url + "Default.aspx");
+            lblTexto.Text = "Cadastrado com sucesso! Volte para fazer Login";
+            lblTexto.Visible = true;
+
+        } 
+        else if (AdministradorDB.Insert(adm).Equals("Duplicate entry"+" "+"'"+adm.CPF+"'"+" "+"for key 'adm_administrador.PRIMARY'"))
+        {
+
+            lblTexto.Text = "Esse usuário já existe em nosso sistema";
+            lblTexto.Visible = true;
+        }
+        else
+        {
+            lblTexto.Text = "Erro no cadastro. Verifique seus dados";
+            lblTexto.Visible = true;
         }
           
             
