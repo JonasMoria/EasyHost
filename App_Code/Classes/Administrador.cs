@@ -10,7 +10,9 @@ public class Administrador
 {
 
     private string _CPF;
-    private string _Nome;
+    private string _Email;
+    private string _Senha;
+    private string _NomeEmpresa;
 
     public Administrador()
     {
@@ -32,16 +34,42 @@ public class Administrador
         }
     }
 
-    public string Nome
+    public string Email
     {
         get
         {
-            return _Nome;
+            return _Email;
         }
 
         set
         {
-            _Nome = value;
+            _Email = value;
+        }
+    }
+
+    public string Senha
+    {
+        get
+        {
+            return _Senha;
+        }
+
+        set
+        {
+            _Senha = value;
+        }
+    }
+
+    public string NomeEmpresa
+    {
+        get
+        {
+            return _NomeEmpresa;
+        }
+
+        set
+        {
+            _NomeEmpresa = value;
         }
     }
 
