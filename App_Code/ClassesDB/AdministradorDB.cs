@@ -7,16 +7,20 @@ using System.Web;
 /// <summary>
 /// Descrição resumida de AdministradorDB
 /// </summary>
-public class AdministradorDB {
+public class AdministradorDB
+{
 
-    public AdministradorDB() {
+    public AdministradorDB()
+    {
         //
         // TODO: Adicionar lógica do construtor aqui
         //
     }
 
-    public static String Insert(Administrador administrador) {
-        try {
+    public static String Insert(Administrador administrador)
+    {
+        try
+        {
             IDbConnection ObjConexao;
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
@@ -32,7 +36,86 @@ public class AdministradorDB {
             Comando.Dispose();
             ObjConexao.Close();
             return "Sucesso";
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
+            
+            return e.Message;
+        }
+    }
+
+    public static String Cadastra_Funcionario(Funcionario funcionario)
+    {
+        try
+        {
+            IDbConnection ObjConexao;
+            IDbCommand Comando;
+            ObjConexao = Mapped.Connection();
+            string sql = @"INSERT INTO fun_funcionarios VALUES (?cpf, ?nome, ?email, ?senha, ?admCpf)";
+            Comando = Mapped.Command(sql, ObjConexao);
+            Comando.Parameters.Add(Mapped.Parameter("?cpf", funcionario.CPF));
+            Comando.Parameters.Add(Mapped.Parameter("?nome", funcionario.Nome));
+            Comando.Parameters.Add(Mapped.Parameter("?email", funcionario.Email));
+            Comando.Parameters.Add(Mapped.Parameter("?senha", funcionario.Senha));
+            Comando.Parameters.Add(Mapped.Parameter("?admCpf", funcionario.AdmCPF));
+            Comando.ExecuteNonQuery();
+            ObjConexao.Dispose();
+            Comando.Dispose();
+            ObjConexao.Close();
+            return "Sucesso";
+        }
+        catch (Exception e)
+        {
+
+            return e.Message;
+        }
+    }
+
+    public static String Cadastra_Quarto(Quarto quarto)
+    {
+        try
+        {
+            IDbConnection ObjConexao;
+            IDbCommand Comando;
+            ObjConexao = Mapped.Connection();
+            string sql = @"INSERT INTO qua_quartos VALUES (0, ?nome, ?situacao, ?admCpf)";
+            Comando = Mapped.Command(sql, ObjConexao);
+            Comando.Parameters.Add(Mapped.Parameter("?nome", quarto.Nome));
+            Comando.Parameters.Add(Mapped.Parameter("?situacao", quarto.Situacao));
+            Comando.Parameters.Add(Mapped.Parameter("?admCpf", quarto.AdmCPF));           
+            Comando.ExecuteNonQuery();
+            ObjConexao.Dispose();
+            Comando.Dispose();
+            ObjConexao.Close();
+            return "Sucesso";
+        }
+        catch (Exception e)
+        {
+
+            return e.Message;
+        }
+    }
+
+    public static String Cadastra_Hospede(Hospede hospede)
+    {
+        try
+        {
+            IDbConnection ObjConexao;
+            IDbCommand Comando;
+            ObjConexao = Mapped.Connection();
+            string sql = @"INSERT INTO hos_hospedes VALUES (0, ?nome, ?telefone, ?admCpf)";
+            Comando = Mapped.Command(sql, ObjConexao);
+            Comando.Parameters.Add(Mapped.Parameter("?nome", hospede.Nome));
+            Comando.Parameters.Add(Mapped.Parameter("?telefone", hospede.Telefone));
+            Comando.Parameters.Add(Mapped.Parameter("?admCpf", hospede.AdmCPF));           
+            Comando.ExecuteNonQuery();
+            ObjConexao.Dispose();
+            Comando.Dispose();
+            ObjConexao.Close();
+            return "Sucesso";
+        }
+        catch (Exception e)
+        {
 
             return e.Message;
         }
@@ -43,8 +126,10 @@ public class AdministradorDB {
     /// </summary>
     /// <param name="cpf">cpf do usuário (PK)</param>
     /// <returns>0 se for sucesso / -2 se for erro</returns>
-    public static int Delete(int cpf) {
-        try {
+    public static int Delete(int cpf)
+    {
+        try
+        {
             IDbConnection ObjConexao;
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
@@ -56,13 +141,17 @@ public class AdministradorDB {
             Comando.Dispose();
             ObjConexao.Close();
             return 0;
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             return -2;
         }
     }
 
-    public static int Update(Administrador administrador) {
-        try {
+    public static int Update(Administrador administrador)
+    {
+        try
+        {
             IDbConnection ObjConexao;
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
@@ -75,7 +164,9 @@ public class AdministradorDB {
             Comando.Dispose();
             ObjConexao.Close();
             return 0;
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             return -2;
         }
     }
