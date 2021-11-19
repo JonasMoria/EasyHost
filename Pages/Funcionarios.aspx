@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPages/MP_Administrador.master" AutoEventWireup="true" CodeFile="Funcionarios.aspx.cs" Inherits="Pages_Funcionarios" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPages/MP_Administrador.master" AutoEventWireup="true" CodeFile="Funcionarios.aspx.cs" Inherits="Pages_Funcionarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="../Content/css/Funcionarios.css" rel="stylesheet" />
@@ -48,7 +48,7 @@
             </div>
 
             <div style="margin-left: 3%; margin-top: 1%">
-               <asp:Button runat="server" ID="btnCadFuncionario" CssClass="btn btn-success text-white " Text="CADASTRAR" />
+               <asp:Button runat="server" ID="btnCadFuncionario" CssClass="btn btn-success text-white " Text="CADASTRAR" OnClick="btn_CadasdastrarFun_Click"/>
             </div>
          
         </section>
