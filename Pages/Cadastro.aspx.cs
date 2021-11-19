@@ -7,45 +7,34 @@ using System.Web.UI.WebControls;
 
 public partial class Pages_Cadastro : System.Web.UI.Page {
 
-    static string url = "http://localhost:52757/";
+
     protected void Page_Load(object sender, EventArgs e) {
 
     }
 
-    protected void btnCriar_Click(object sender, EventArgs e)
-    {
+    protected void btnCriar_Click(object sender, EventArgs e) {
 
-        Funcionario fun = new Funcionario();
-        fun.Nome = "0";
-        fun.CPF = "1";
+        Usuario usuario = new Usuario();
 
-        Administrador adm = new Administrador();
-        adm.CPF = txtDoc.Text;
-        adm.Nome = "teste";
+        usuario.Email = txtCadUsuario.Text;
+        usuario.Senha = txtCadSenha.Text;
+        usuario.ADM_CPF = txtDoc.Text;
+        usuario.NomeEmpresa = txtCadNomeEmpresa.Text;
 
-        
+        lblErro.Text = "Sucesso No Cadastro";
+        lblErro.Visible = true;
 
-        Usuario usu = new Usuario();
-        usu.Email = txtCadUsuario.Text;
-        usu.Senha = txtCadRepetirSenha.Text;
-        usu.ADM_CPF = txtDoc.Text;
-        usu.FUN_CPF = "0";
-        usu.NomeEmpresa = txtCadNomeEmpresa.Text;  
+        UsuarioDB.Insert(usuario);
 
-       if (usu.ADM_CPF != "")
-        {
-            FuncionarioDB.Insert(fun);
-            AdministradorDB.Insert(adm);
-            UsuarioDB.Insert(usu);
-
-            Response.Redirect(url + "Default.aspx");
+        if (UsuarioDB.Insert(usuario).Equals("Sucesso")) {
+            lblErro.Text = "Sucesso No Cadastro";
+            lblErro.Visible = true;
+        } else {
+            lblErro.Text = UsuarioDB.Insert(usuario);
+            lblErro.Visible = true;
         }
-          
-            
-        
-        
-        
-      
+
+
 
 
     }

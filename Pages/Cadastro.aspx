@@ -19,6 +19,7 @@
         <section class="col-12" id="formLogin">
 
             <h3>Cadastre-se</h3>
+            <asp:Label runat="server" ID="lblErro" Text="Erro, Não Foi Possivel Cadastrar" Visible="false" />
 
             <div class="form-group">
                 <asp:Label ID="lblCadUsuario" runat="server" Text="Email" />
