@@ -21,7 +21,7 @@ public partial class Pages_Funcionarios : System.Web.UI.Page {
         fun.Nome = txtCadFuncionario.Text;
         fun.Email = txtEmailFuncionario.Text;
         fun.Senha = txtRepSenhaFuncionario.Text;
-        fun.AdmCPF = "1234567";
+        fun.AdmCPF = "123";
 
         if (AdministradorDB.Cadastra_Funcionario(fun).Equals("Sucesso"))
         {

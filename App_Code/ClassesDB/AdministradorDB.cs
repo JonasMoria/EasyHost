@@ -7,20 +7,43 @@ using System.Web;
 /// <summary>
 /// Descrição resumida de AdministradorDB
 /// </summary>
-public class AdministradorDB
-{
+public class AdministradorDB {
 
-    public AdministradorDB()
-    {
+    public AdministradorDB() {
         //
         // TODO: Adicionar lógica do construtor aqui
         //
     }
 
-    public static String Insert(Administrador administrador)
-    {
-        try
-        {
+    public static String LoginAdm(Administrador administrador) {
+        try {
+            IDbConnection ObjConexao;
+            IDbCommand Comando;
+            ObjConexao = Mapped.Connection();
+            string sql = @"SELECT ADM_EMAIL, ADM_SENHA FROM adm_administrador WHERE ADM_EMAIL = ?email  AND ADM_SENHA = ?senha";
+            Comando = Mapped.Command(sql, ObjConexao);
+            Comando.Parameters.Add(Mapped.Parameter("?email", administrador.Email));
+            Comando.Parameters.Add(Mapped.Parameter("?senha", administrador.Senha));
+            var resultado = Comando.ExecuteScalar();
+
+            if (resultado != null) {
+                return "Sucesso";
+            } else {
+                return "Erro";
+            }
+
+            ObjConexao.Dispose();
+            Comando.Dispose();
+            ObjConexao.Close();
+
+          
+        } catch (Exception e) {
+            return e.Message;
+        }
+    }
+
+    public static String Insert(Administrador administrador) {
+        try {
             IDbConnection ObjConexao;
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
@@ -36,18 +59,14 @@ public class AdministradorDB
             Comando.Dispose();
             ObjConexao.Close();
             return "Sucesso";
-        }
-        catch (Exception e)
-        {
-            
+        } catch (Exception e) {
+
             return e.Message;
         }
     }
 
-    public static String Cadastra_Funcionario(Funcionario funcionario)
-    {
-        try
-        {
+    public static String Cadastra_Funcionario(Funcionario funcionario) {
+        try {
             IDbConnection ObjConexao;
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
@@ -63,18 +82,14 @@ public class AdministradorDB
             Comando.Dispose();
             ObjConexao.Close();
             return "Sucesso";
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
 
             return e.Message;
         }
     }
 
-    public static String Cadastra_Quarto(Quarto quarto)
-    {
-        try
-        {
+    public static String Cadastra_Quarto(Quarto quarto) {
+        try {
             IDbConnection ObjConexao;
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
@@ -82,24 +97,20 @@ public class AdministradorDB
             Comando = Mapped.Command(sql, ObjConexao);
             Comando.Parameters.Add(Mapped.Parameter("?nome", quarto.Nome));
             Comando.Parameters.Add(Mapped.Parameter("?situacao", quarto.Situacao));
-            Comando.Parameters.Add(Mapped.Parameter("?admCpf", quarto.AdmCPF));           
+            Comando.Parameters.Add(Mapped.Parameter("?admCpf", quarto.AdmCPF));
             Comando.ExecuteNonQuery();
             ObjConexao.Dispose();
             Comando.Dispose();
             ObjConexao.Close();
             return "Sucesso";
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
 
             return e.Message;
         }
     }
 
-    public static String Cadastra_Hospede(Hospede hospede)
-    {
-        try
-        {
+    public static String Cadastra_Hospede(Hospede hospede) {
+        try {
             IDbConnection ObjConexao;
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
@@ -107,15 +118,13 @@ public class AdministradorDB
             Comando = Mapped.Command(sql, ObjConexao);
             Comando.Parameters.Add(Mapped.Parameter("?nome", hospede.Nome));
             Comando.Parameters.Add(Mapped.Parameter("?telefone", hospede.Telefone));
-            Comando.Parameters.Add(Mapped.Parameter("?admCpf", hospede.AdmCPF));           
+            Comando.Parameters.Add(Mapped.Parameter("?admCpf", hospede.AdmCPF));
             Comando.ExecuteNonQuery();
             ObjConexao.Dispose();
             Comando.Dispose();
             ObjConexao.Close();
             return "Sucesso";
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
 
             return e.Message;
         }
@@ -126,10 +135,8 @@ public class AdministradorDB
     /// </summary>
     /// <param name="cpf">cpf do usuário (PK)</param>
     /// <returns>0 se for sucesso / -2 se for erro</returns>
-    public static int Delete(int cpf)
-    {
-        try
-        {
+    public static int Delete(int cpf) {
+        try {
             IDbConnection ObjConexao;
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
@@ -141,17 +148,13 @@ public class AdministradorDB
             Comando.Dispose();
             ObjConexao.Close();
             return 0;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return -2;
         }
     }
 
-    public static int Update(Administrador administrador)
-    {
-        try
-        {
+    public static int Update(Administrador administrador) {
+        try {
             IDbConnection ObjConexao;
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
@@ -164,9 +167,7 @@ public class AdministradorDB
             Comando.Dispose();
             ObjConexao.Close();
             return 0;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return -2;
         }
     }

@@ -19,18 +19,18 @@ public partial class _Default : System.Web.UI.Page {
 
     protected void btnLogin_Click(object sender, EventArgs e) {
 
-        var usuario = txtUsuario;
-        var senha = txtSenha;
+        string url = "http://localhost:52757/";
+        Administrador adm  = new Administrador();
+        adm.Email = txtUsuario.Text;
+        adm.Senha = txtSenha.Text;
 
-        if (!String.IsNullOrWhiteSpace(usuario.Text) || senha.Text != "")
+        var txt = lblTexto;
 
-            Response.Redirect(url);
-
-        else
-
-            lblTexto.Visible = true;
-         
-
+        if (AdministradorDB.LoginAdm(adm).Equals("Sucesso") && !String.IsNullOrEmpty(adm.Email) && !String.IsNullOrEmpty(adm.Senha)) {
+            Response.Redirect(url+"Pages/MapaReservas.aspx");
+        } else {
+            txt.Visible = true;
+        }
 
     }
 }
