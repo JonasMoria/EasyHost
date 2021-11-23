@@ -20,7 +20,12 @@ public class AdministradorDB {
             IDbConnection ObjConexao;
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
-            string sql = @"SELECT ADM_EMAIL, ADM_SENHA FROM adm_administrador WHERE ADM_EMAIL = ?email  AND ADM_SENHA = ?senha";
+            string sql = @"SELECT a.ADM_EMAIL, a.ADM_SENHA, f.FUN_EMAIL, f.FUN_SENHA 
+                            FROM adm_administrador a
+	                            INNER JOIN fun_funcionarios f 
+                                ON a.ADM_CPF = f.ADM_CPF
+                            WHERE a.ADM_EMAIL = ?email AND a.ADM_SENHA = ?senha
+                            OR f.FUN_EMAIL = ?email AND f.FUN_SENHA = ?senha";
             Comando = Mapped.Command(sql, ObjConexao);
             Comando.Parameters.Add(Mapped.Parameter("?email", administrador.Email));
             Comando.Parameters.Add(Mapped.Parameter("?senha", administrador.Senha));
