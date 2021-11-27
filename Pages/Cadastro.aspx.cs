@@ -17,23 +17,60 @@ public partial class Pages_Cadastro : System.Web.UI.Page {
         Administrador adm = new Administrador();
         adm.CPF = txtDoc.Text;
         adm.Email = txtCadUsuario.Text;
+        String testeSenha = txtCadSenha.Text;
         adm.Senha = txtCadRepetirSenha.Text;
         adm.NomeEmpresa = txtCadNomeEmpresa.Text;
 
+        if (validaStrings(adm.Email, adm.NomeEmpresa) && validaSenhas(txtCadSenha.Text, txtCadRepetirSenha.Text) && validaDocumento(adm.CPF)) {
 
+            if (AdministradorDB.VerificaUsuarioExistente(adm.CPF).Equals("Existe")) {
+                lblTexto.Text = "Usuário Já Existe!";
+                lblTexto.Visible = true;
+            }
+            if (AdministradorDB.VerificaUsuarioExistente(adm.CPF).Equals("NaoExiste")) {
+                if (AdministradorDB.Insert(adm).Equals("Sucesso")) {
+                    lblTexto.Text = "Cadastrado com sucesso! Volte para fazer Login";
+                    lblTexto.Visible = true;
+                }
+            }
 
-
-        if (AdministradorDB.Insert(adm).Equals("Sucesso") && adm.CPF != "" && adm.Email != "") {
-
-            lblTexto.Text = "Cadastrado com sucesso! Volte para fazer Login";
-            lblTexto.Visible = true;
-
-        } else if (AdministradorDB.Insert(adm).Equals("Duplicate entry" + " " + "'" + adm.CPF + "'" + " " + "for key 'adm_administrador.PRIMARY'")) {
-            lblTexto.Text = "Esse usuÃ¡rio jÃ¡ existe em nosso sistema";
-            lblTexto.Visible = true;
         } else {
             lblTexto.Text = "Erro no cadastro. Verifique seus dados";
             lblTexto.Visible = true;
         }
+    }
+
+    private Boolean validaStrings(String email, String empresa) {
+        if (String.IsNullOrWhiteSpace(email) && String.IsNullOrWhiteSpace(empresa)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    private Boolean validaSenhas(String senha, String testeSenha) {
+
+        Boolean autorizado = false;
+
+        if (!String.IsNullOrWhiteSpace(senha) && !String.IsNullOrWhiteSpace(testeSenha)) {
+            if (senha.Length >= 8 && testeSenha.Length >= 8) {
+                if (senha.Equals(testeSenha)) {
+                    autorizado = true;
+                }
+            }
+        }
+
+        return autorizado;
+    }
+    private Boolean validaDocumento(String documento) {
+
+        Boolean autorizado = false;
+
+        if (!String.IsNullOrWhiteSpace(documento)) {
+            if (documento.Length == 11 || documento.Length == 14) {
+                autorizado = true;
+            }
+        }
+
+        return autorizado;
     }
 }

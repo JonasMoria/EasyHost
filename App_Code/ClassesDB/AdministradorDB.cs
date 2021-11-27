@@ -15,21 +15,51 @@ public class AdministradorDB {
         //
     }
 
+    public static String VerificaUsuarioExistente(String documento) {
+        try {
+            IDbConnection ObjConexao;
+            IDbCommand Comando;
+            ObjConexao = Mapped.Connection();
+            string sql = @"SELECT ADM_CPF FROM adm_administrador WHERE ADM_CPF = ?documento";
+            Comando = Mapped.Command(sql, ObjConexao);
+            Comando.Parameters.Add(Mapped.Parameter("?documento", documento));
+            var resultado = Comando.ExecuteScalar();
+
+            if (resultado == null) {
+                return "NaoExiste";
+            } else {
+                return "Existe";
+            }
+
+            ObjConexao.Dispose();
+            Comando.Dispose();
+            ObjConexao.Close();
+
+
+        } catch (Exception e) {
+            return e.Message;
+        }
+    }
+
     public static String LoginAdm(Administrador administrador) {
         try {
             IDbConnection ObjConexao;
             IDbCommand Comando;
             ObjConexao = Mapped.Connection();
-            string sql = @"SELECT a.ADM_EMAIL, a.ADM_SENHA, f.FUN_EMAIL, f.FUN_SENHA 
-                            FROM adm_administrador a
-	                            INNER JOIN fun_funcionarios f 
-                                ON a.ADM_CPF = f.ADM_CPF
-                            WHERE a.ADM_EMAIL = ?email AND a.ADM_SENHA = ?senha
-                            OR f.FUN_EMAIL = ?email AND f.FUN_SENHA = ?senha";
+            //string sql = @"SELECT a.ADM_EMAIL, a.ADM_SENHA, f.FUN_EMAIL, f.FUN_SENHA 
+            //                FROM adm_administrador a
+            //                 INNER JOIN fun_funcionarios f 
+            //                    ON a.ADM_CPF = f.ADM_CPF
+            //                WHERE a.ADM_EMAIL = ?email AND a.ADM_SENHA = ?senha
+            //                OR f.FUN_EMAIL = ?email AND f.FUN_SENHA = ?senha";
+            string sql = @"SELECT ADM_EMAIL, ADM_SENHA FROM adm_administrador WHERE ADM_SENHA = ?senha && ADM_EMAIL = ?email";
             Comando = Mapped.Command(sql, ObjConexao);
             Comando.Parameters.Add(Mapped.Parameter("?email", administrador.Email));
             Comando.Parameters.Add(Mapped.Parameter("?senha", administrador.Senha));
             var resultado = Comando.ExecuteScalar();
+            Comando.Dispose();
+            ObjConexao.Close();
+            ObjConexao.Dispose();
 
             if (resultado != null) {
                 return "Sucesso";
@@ -37,9 +67,6 @@ public class AdministradorDB {
                 return "Erro";
             }
 
-            ObjConexao.Dispose();
-            Comando.Dispose();
-            ObjConexao.Close();
 
           
         } catch (Exception e) {

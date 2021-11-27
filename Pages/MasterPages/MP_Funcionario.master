@@ -43,7 +43,7 @@
                 <h2 style="color: white; padding-top: 1%">EASYHOST</h2>
             </div>
             <div class="col-4 row " style="float: right">
-                <asp:Button runat="server" CssClass="btn btn-danger col-4 m-2 color-white" Text="Sair" />
+                <asp:Button runat="server" CssClass="btn btn-danger col-4 m-2 color-white" Text="Sair" ID="btnSair" OnClick="btnSair_Click"/>
             </div>
         </nav>
         <%--Script Para Abrir/Fechar o  Menu e Regular Exibição dos componentes--%>

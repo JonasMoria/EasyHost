@@ -11,7 +11,7 @@
         <%--Localização Do Usuario--%>
         <section class="col-12 row p-2 local">
             <div class="col-4">
-                <h2>Cadastrar Funcionários</h2>
+                <h2>Cadastrar Funcionarios</h2>
             </div>
             <div class="col-8 pt-3">
                 <h6 style="float: right; margin-right: 10%"><strong style="color: blue">HOME</strong> / Funcionários</h6>

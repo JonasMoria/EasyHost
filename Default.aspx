@@ -21,6 +21,10 @@
 
         <section class="col-12" id="formLogin">
             <h3>BEM-VINDO(A)</h3>
+            <div class="col-12 border">
+                <asp:RadioButton id="radAdm" Text="Administrador" Checked="false" CssClass="me-3" GroupName="RadioGroup1" runat="server" /> 
+                <asp:RadioButton id="radFun" Text="Funcionário" Checked="false  " GroupName="RadioGroup1" runat="server" />
+            </div>
              <div class="form-group">
                 <asp:Label ID="lblTexto" runat="server" CssClass="text-danger" Text="E-mail ou senha incorretos!" Visible="false"></asp:Label>
             </div>
