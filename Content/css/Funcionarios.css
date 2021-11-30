@@ -4,8 +4,17 @@
     padding-left: 4%;
 }
 .tabFuncionarios {
-    text-align: center;
     width: 90%;
-    margin-left: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    overflow-x: scroll
 }
+.font {
+    font-weight: 600;
+    color: black;
+}
+#gdvFuncionarios {
+    overflow-x: scroll;
+}
+
 

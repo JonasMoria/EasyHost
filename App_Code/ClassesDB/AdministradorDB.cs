@@ -15,6 +15,98 @@ public class AdministradorDB {
         //
     }
 
+    public static int DeleteFuncionario(String cpfFun, String cpfAdm) {
+        try {
+            IDbConnection ObjConexao;
+            IDbCommand Comando;
+            ObjConexao = Mapped.Connection();
+            string sql = @"SET SQL_SAFE_UPDATES = 0;DELETE FROM fun_funcionarios WHERE FUN_CPF = ?cpfFun AND ADM_CPF = ?cpfAdm";
+            Comando = Mapped.Command(sql, ObjConexao);
+            Comando.Parameters.Add(Mapped.Parameter("?cpfFun", cpfFun));
+            Comando.Parameters.Add(Mapped.Parameter("?cpfAdm", cpfAdm));
+            Comando.ExecuteNonQuery();
+            ObjConexao.Dispose();
+            Comando.Dispose();
+            ObjConexao.Close();
+            return 0;
+        } catch (Exception e) {
+            return -2;
+        }
+    }
+    public static DataSet SelectQuartos(String cpf) {
+        DataSet ds = new DataSet();
+        IDbConnection ObjConexao;
+        IDbCommand Comando;
+        IDataAdapter Adapter;
+        ObjConexao = Mapped.Connection();
+        string sql = @"SELECT * FROM qua_quartos  WHERE ADM_CPF = ?cpf";
+        Comando = Mapped.Command(sql, ObjConexao);
+        Comando.Parameters.Add(Mapped.Parameter("?cpf", cpf));
+        Adapter = Mapped.Adapter(Comando);
+        Adapter.Fill(ds);
+        ObjConexao.Close();
+        Comando.Dispose();
+        ObjConexao.Dispose();
+        return ds;
+    }
+    public static DataSet SelectHospedes(String cpf) {
+        DataSet ds = new DataSet();
+        IDbConnection ObjConexao;
+        IDbCommand Comando;
+        IDataAdapter Adapter;
+        ObjConexao = Mapped.Connection();
+        string sql = @"SELECT * FROM hos_hospedes  WHERE ADM_CPF = ?cpf";
+        Comando = Mapped.Command(sql, ObjConexao);
+        Comando.Parameters.Add(Mapped.Parameter("?cpf", cpf));
+        Adapter = Mapped.Adapter(Comando);
+        Adapter.Fill(ds);
+        ObjConexao.Close();
+        Comando.Dispose();
+        ObjConexao.Dispose();
+        return ds;
+    }
+    public static DataSet SelectFuncionarios(String cpf) {
+        DataSet ds = new DataSet();
+        IDbConnection ObjConexao;
+        IDbCommand Comando;
+        IDataAdapter Adapter;
+        ObjConexao = Mapped.Connection();
+        string sql = @"SELECT * FROM fun_funcionarios  WHERE ADM_CPF = ?cpf";
+        Comando = Mapped.Command(sql, ObjConexao);
+        Comando.Parameters.Add(Mapped.Parameter("?cpf", cpf));
+        Adapter = Mapped.Adapter(Comando);
+        Adapter.Fill(ds);
+        ObjConexao.Close();
+        Comando.Dispose();
+        ObjConexao.Dispose();
+        return ds;
+    }
+    public static String getCpf(Administrador administrador) {
+        try {
+            IDbConnection ObjConexao;
+            IDbCommand Comando;
+            ObjConexao = Mapped.Connection();
+            string sql = @"SELECT ADM_CPF FROM adm_administrador WHERE ADM_SENHA = ?senha && ADM_EMAIL = ?email";
+            Comando = Mapped.Command(sql, ObjConexao);
+            Comando.Parameters.Add(Mapped.Parameter("?email", administrador.Email));
+            Comando.Parameters.Add(Mapped.Parameter("?senha", administrador.Senha));
+            var reader = Comando.ExecuteScalar();
+
+
+
+            Comando.Dispose();
+            ObjConexao.Close();
+            ObjConexao.Dispose();
+
+
+
+            return Convert.ToString(reader);
+
+        } catch (Exception e) {
+            return e.Message;
+        }
+    }
+
     public static String VerificaUsuarioExistente(String documento) {
         try {
             IDbConnection ObjConexao;
@@ -68,7 +160,7 @@ public class AdministradorDB {
             }
 
 
-          
+
         } catch (Exception e) {
             return e.Message;
         }
@@ -167,40 +259,5 @@ public class AdministradorDB {
     /// </summary>
     /// <param name="cpf">cpf do usuário (PK)</param>
     /// <returns>0 se for sucesso / -2 se for erro</returns>
-    public static int Delete(int cpf) {
-        try {
-            IDbConnection ObjConexao;
-            IDbCommand Comando;
-            ObjConexao = Mapped.Connection();
-            string sql = "DELETE FROM adm_administrador WHERE ADM_CPF = ?cpf";
-            Comando = Mapped.Command(sql, ObjConexao);
-            Comando.Parameters.Add(Mapped.Parameter("?cpf", cpf));
-            Comando.ExecuteNonQuery();
-            ObjConexao.Dispose();
-            Comando.Dispose();
-            ObjConexao.Close();
-            return 0;
-        } catch (Exception e) {
-            return -2;
-        }
-    }
 
-    public static int Update(Administrador administrador) {
-        try {
-            IDbConnection ObjConexao;
-            IDbCommand Comando;
-            ObjConexao = Mapped.Connection();
-            string sql = @"UPDATE adm_administrador SET ADM_EMAIL = ?email WHERE ADM_CPF = ?cpf";
-            Comando = Mapped.Command(sql, ObjConexao);
-            Comando.Parameters.Add(Mapped.Parameter("?cpf", administrador.CPF));
-            Comando.Parameters.Add(Mapped.Parameter("?email", administrador.Email));
-            Comando.ExecuteNonQuery();
-            ObjConexao.Dispose();
-            Comando.Dispose();
-            ObjConexao.Close();
-            return 0;
-        } catch (Exception e) {
-            return -2;
-        }
-    }
 }

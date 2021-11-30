@@ -15,5 +15,7 @@ public partial class Pages_MapaReservas : System.Web.UI.Page {
             Response.Redirect(url + "Default.aspx");
         }
 
+        string adm = Session["getCpf"].ToString();
+
     }
 }

@@ -36,6 +36,7 @@ public partial class _Default : System.Web.UI.Page {
                 adm.Senha = txtSenha.Text;
                 if (AdministradorDB.LoginAdm(adm).Equals("Sucesso") && !String.IsNullOrEmpty(adm.Email) && !String.IsNullOrEmpty(adm.Senha)) {
                     Session.Add("login", "validado");
+                    Session["getCpf"] = AdministradorDB.getCpf(adm);
                     Response.Redirect(url + "Pages/MapaReservas.aspx");
                 } else {
                     txt.Visible = true;

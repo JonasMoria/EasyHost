@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class Pages_MasterPages_MP_Administrador : System.Web.UI.MasterPage {
     protected void Page_Load(object sender, EventArgs e) {
-        
+
     }
 
 

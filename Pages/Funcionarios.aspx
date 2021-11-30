@@ -14,7 +14,7 @@
                 <h2>Cadastrar Funcionarios</h2>
             </div>
             <div class="col-8 pt-3">
-                <h6 style="float: right; margin-right: 10%"><strong style="color: blue">HOME</strong> / Funcionários</h6>
+                <h6 style="float: right; margin-right: 10%"><strong style="color: blue">HOME</strong> / Funcionarios</h6>
             </div>
         </section>
 
@@ -48,16 +48,85 @@
             </div>
 
             <div style="margin-left: 3%; margin-top: 1%">
-               <asp:Button runat="server" ID="btnCadFuncionario" CssClass="btn btn-success text-white " Text="CADASTRAR" OnClick="btn_CadasdastrarFun_Click"/>
+                <asp:Button runat="server" ID="btnCadFuncionario" CssClass="btn btn-success text-white " Text="CADASTRAR" OnClick="btn_CadasdastrarFun_Click" />
             </div>
-         
+        </section>
+        <%-- Tabela De Funcionários--%>
+        <div class="row" style="margin-top: 3%">
+            <div class="col-md-12 tabFuncionarios">
+                <asp:GridView ID="gdvFuncionarios" runat="server" AutoGenerateColumns="false" CssClass="table table-hover table-borderless tabela" OnRowDataBound="gdvFuncionarios_RowDataBound">
+                    <Columns>
+                        <asp:BoundField DataField="FUN_NOME" HeaderText="NOME" />
+                        <asp:BoundField DataField="FUN_EMAIL" HeaderText="E-MAIL" />
+                        <asp:BoundField DataField="FUN_CPF" HeaderText="CPF" />
+                        <asp:BoundField DataField="FUN_SENHA" HeaderText="SENHA" />
+                        <asp:TemplateField HeaderText="EDITAR">
+                            <ItemTemplate>
+                                <button type="button" data-toggle="modal" class="btn btn-warning color-white" data-target="#modalEditar">
+                                    <i class="fa fa-pencil-alt"></i>
+                                </button>
+                                <button type="button" data-toggle="modal" class="btn btn-danger color-white" data-target="#modalExcluir">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
+        </div>
+
+        <!-- Modal Excluir Funcionario -->
+        <section class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">EXCLUIR FUNCIONARIO</h5>
+                        <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h2>DESEJA EXCLUIR ESTE FUNCIONARIO?</h2>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" style="background-color: forestgreen; color: white; border-color: black" class="btn " data-dismiss="modal">CANCELAR</button>
+                        <asp:Button runat="server" ID="btnExcluirHosp" OnClick="btnExcluir_Click" CssClass="btn text-white bg-danger" Text="EXCLUIR" BackColor="green" BorderColor="Black" />
+                    </div>
+                </div>
+            </div>
         </section>
 
-         <%-- Tabela De Funcionários--%>
-        <section class="col-12 row mt-2 tabFuncionarios border">
-            <h1>Aqui fica A tabela de funcionarios</h1>
-        </section>
+        <!-- Modal Editar Funcionario -->
+        <section class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">EDITAR FUNCIONARIO</h5>
+                        <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <asp:Label ID="lblEditNome" runat="server" Text="Nome" />
+                        <asp:TextBox ID="txtCheckIn" runat="server" CssClass="form-control" />
+                        <br />
+                        <asp:Label ID="lblEditEmail" runat="server" Text="Email" />
+                        <asp:TextBox ID="txtEditEmail" runat="server" CssClass="form-control" TextMode="Email" />
+                        <br />
+                        <asp:Label ID="lblEditSenha" runat="server" Text="Senha" />
+                        <asp:TextBox ID="txtEditSenha" runat="server" CssClass="form-control" TextMode="Password" />
+                        <br />
+                        <asp:Label ID="lblEditRepSenha" runat="server" Text="Repita a Senha" />
+                        <asp:TextBox ID="txtEditRepSenha" runat="server" CssClass="form-control" TextMode="Password" />
 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" style="background-color: crimson; color: white; border-color: black" class="btn " data-dismiss="modal">CANCELAR</button>
+                        <asp:Button runat="server" ID="btnEditar" CssClass="btn text-white" Text="SALVAR" BackColor="green" BorderColor="Black" />
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
