@@ -26,7 +26,7 @@
             <br />
             <div class="form-group">
                 <asp:Label ID="lblNomeQuarto" runat="server" Text="Nome" />
-                <asp:TextBox ID="txtNomeQuarto" runat="server" CssClass="form-control" placeholder="Nome/Número do Quarto" />
+                <asp:TextBox ID="txtNomeQuarto" runat="server" CssClass="form-control" placeholder="Nome/Numero do Quarto" />
             </div>
             <div style="margin-left: 3%; margin-top: 1%">
                 <asp:Button runat="server" ID="btnCadQuarto" CssClass="btn btn-success text-white" Text="CADASTRAR" OnClick="btn_CadastrarQua_Click" />
@@ -35,6 +35,13 @@
 
         <%-- Tabela De Quartos--%>
         <div class="row" style="margin-top: 5%">
+            <style>
+                .dt-button {
+                    background-color: goldenrod !important;
+                    color: white !important;
+                    border: none !important;
+                }
+            </style>
             <div class="col-md-12 tabQuartos">
                 <asp:GridView ID="gdvQuartos" runat="server" AutoGenerateColumns="false" CssClass="table table-hover table-borderless tabela" OnRowDataBound="gdvQuartos_RowDataBound">
                     <Columns>

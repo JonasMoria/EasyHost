@@ -12,36 +12,38 @@ public class FuncionarioDB {
         // TODO: Adicionar lógica do construtor aqui
         //
     }
-    public static String LoginFunc(Funcionario funcionario) {
+    public static Funcionario LoginFun(string email, string senha) {
+        Funcionario funcionario = null;
         try {
             IDbConnection ObjConexao;
             IDbCommand Comando;
+            IDataReader ObjDataReader;
             ObjConexao = Mapped.Connection();
-            //string sql = @"SELECT a.ADM_EMAIL, a.ADM_SENHA, f.FUN_EMAIL, f.FUN_SENHA 
-            //                FROM adm_administrador a
-            //                 INNER JOIN fun_funcionarios f 
-            //                    ON a.ADM_CPF = f.ADM_CPF
-            //                WHERE a.ADM_EMAIL = ?email AND a.ADM_SENHA = ?senha
-            //                OR f.FUN_EMAIL = ?email AND f.FUN_SENHA = ?senha";
-            string sql = @"SELECT FUN_EMAIL, FUN_SENHA FROM fun_funcionarios WHERE FUN_SENHA = ?senha && FUN_EMAIL = ?email";
+            string sql = @"SELECT * FROM fun_funcionarios  WHERE FUN_EMAIL = ?email AND FUN_SENHA = ?senha";
             Comando = Mapped.Command(sql, ObjConexao);
-            Comando.Parameters.Add(Mapped.Parameter("?email", funcionario.Email));
-            Comando.Parameters.Add(Mapped.Parameter("?senha", funcionario.Senha));
-            var resultado = Comando.ExecuteScalar();
-            Comando.Dispose();
-            ObjConexao.Close();
-            ObjConexao.Dispose();
-
-            if (resultado != null) {
-                return "Sucesso";
-            } else {
-                return "Erro";
+            Comando.Parameters.Add(Mapped.Parameter("?email", email));
+            Comando.Parameters.Add(Mapped.Parameter("?senha", senha));
+            ObjDataReader = Comando.ExecuteReader();
+            while (ObjDataReader.Read()) {
+                funcionario = new Funcionario();
+                funcionario.CPF = ObjDataReader["FUN_CPF"].ToString();
+                funcionario.Email = ObjDataReader["FUN_EMAIL"].ToString();
+                funcionario.Nome = ObjDataReader["FUN_NOME"].ToString();
+                funcionario.AdmCPF = ObjDataReader["ADM_CPF"].ToString();
             }
 
+            ObjDataReader.Close();
+            ObjConexao.Dispose();
+            Comando.Dispose();
+            ObjConexao.Close();
+            return funcionario;
+
         } catch (Exception e) {
-            return e.Message;
+            return null;
         }
     }
+
+
     public static int Insert(Funcionario fun) {
         try {
             IDbConnection ObjConexao;

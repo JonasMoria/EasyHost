@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,12 +11,12 @@ public partial class Pages_MapaReservas : System.Web.UI.Page {
     protected void Page_Load(object sender, EventArgs e) {
 
         string url = "http://localhost:52757/";
-        //impedindo o usuario de entrar caso não tenha feito login
-        if (Session["login"] == null) {
+        if (Session["ADM"] == null)
             Response.Redirect(url + "Default.aspx");
+        if (!Page.IsPostBack) {
+            
         }
 
-        string adm = Session["getCpf"].ToString();
-
     }
+
 }

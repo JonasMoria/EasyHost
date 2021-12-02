@@ -53,13 +53,19 @@
         </section>
         <%-- Tabela De Funcionários--%>
         <div class="row" style="margin-top: 3%">
+            <style>
+                .dt-button {
+                    background-color: goldenrod !important;
+                    color: white !important;
+                    border: none !important;
+                }
+            </style>
             <div class="col-md-12 tabFuncionarios">
                 <asp:GridView ID="gdvFuncionarios" runat="server" AutoGenerateColumns="false" CssClass="table table-hover table-borderless tabela" OnRowDataBound="gdvFuncionarios_RowDataBound">
                     <Columns>
                         <asp:BoundField DataField="FUN_NOME" HeaderText="NOME" />
                         <asp:BoundField DataField="FUN_EMAIL" HeaderText="E-MAIL" />
                         <asp:BoundField DataField="FUN_CPF" HeaderText="CPF" />
-                        <asp:BoundField DataField="FUN_SENHA" HeaderText="SENHA" />
                         <asp:TemplateField HeaderText="EDITAR">
                             <ItemTemplate>
                                 <button type="button" data-toggle="modal" class="btn btn-warning color-white" data-target="#modalEditar">

@@ -9,10 +9,8 @@ using System.Web.UI.WebControls;
 public partial class Pages_Quartos : System.Web.UI.Page {
     protected void Page_Load(object sender, EventArgs e) {
         string url = "http://localhost:52757/";
-        //impedindo o usuario de entrar caso não tenha feito login
-        if (Session["login"] == null) {
+        if (Session["ADM"] == null)
             Response.Redirect(url + "Default.aspx");
-        }
         if (!Page.IsPostBack) {
             CarregarGridView();
         }
@@ -22,11 +20,13 @@ public partial class Pages_Quartos : System.Web.UI.Page {
     }
 
     protected void btn_CadastrarQua_Click(object sender, EventArgs e) {
+       
+        Administrador adm = (Administrador)Session["ADM"];
         Quarto qua = new Quarto();
 
         qua.Nome = txtNomeQuarto.Text;
         qua.Situacao = "Disponivel";
-        qua.AdmCPF = Session["getCpf"].ToString();
+        qua.AdmCPF = adm.CPF.ToString();
 
         if (AdministradorDB.Cadastra_Quarto(qua).Equals("Sucesso")) {
             lblTexto.Text = "Quarto cadastrado com sucesso!";
@@ -40,7 +40,8 @@ public partial class Pages_Quartos : System.Web.UI.Page {
 
     }
     void CarregarGridView() {
-        DataSet dsUsuarios = AdministradorDB.SelectQuartos(Session["getCpf"].ToString());
+        Administrador adm = (Administrador)Session["ADM"];
+        DataSet dsUsuarios = AdministradorDB.SelectQuartos(adm.CPF.ToString());
         int qtd = dsUsuarios.Tables[0].Rows.Count;
         if (qtd > 0) {
             gdvQuartos.DataSource = dsUsuarios.Tables[0].DefaultView;

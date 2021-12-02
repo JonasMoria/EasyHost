@@ -9,30 +9,6 @@ using System.Web;
 /// </summary>
 public class AdministradorDB {
 
-    public AdministradorDB() {
-        //
-        // TODO: Adicionar lógica do construtor aqui
-        //
-    }
-
-    public static int DeleteFuncionario(String cpfFun, String cpfAdm) {
-        try {
-            IDbConnection ObjConexao;
-            IDbCommand Comando;
-            ObjConexao = Mapped.Connection();
-            string sql = @"SET SQL_SAFE_UPDATES = 0;DELETE FROM fun_funcionarios WHERE FUN_CPF = ?cpfFun AND ADM_CPF = ?cpfAdm";
-            Comando = Mapped.Command(sql, ObjConexao);
-            Comando.Parameters.Add(Mapped.Parameter("?cpfFun", cpfFun));
-            Comando.Parameters.Add(Mapped.Parameter("?cpfAdm", cpfAdm));
-            Comando.ExecuteNonQuery();
-            ObjConexao.Dispose();
-            Comando.Dispose();
-            ObjConexao.Close();
-            return 0;
-        } catch (Exception e) {
-            return -2;
-        }
-    }
     public static DataSet SelectQuartos(String cpf) {
         DataSet ds = new DataSet();
         IDbConnection ObjConexao;
@@ -81,31 +57,6 @@ public class AdministradorDB {
         ObjConexao.Dispose();
         return ds;
     }
-    public static String getCpf(Administrador administrador) {
-        try {
-            IDbConnection ObjConexao;
-            IDbCommand Comando;
-            ObjConexao = Mapped.Connection();
-            string sql = @"SELECT ADM_CPF FROM adm_administrador WHERE ADM_SENHA = ?senha && ADM_EMAIL = ?email";
-            Comando = Mapped.Command(sql, ObjConexao);
-            Comando.Parameters.Add(Mapped.Parameter("?email", administrador.Email));
-            Comando.Parameters.Add(Mapped.Parameter("?senha", administrador.Senha));
-            var reader = Comando.ExecuteScalar();
-
-
-
-            Comando.Dispose();
-            ObjConexao.Close();
-            ObjConexao.Dispose();
-
-
-
-            return Convert.ToString(reader);
-
-        } catch (Exception e) {
-            return e.Message;
-        }
-    }
 
     public static String VerificaUsuarioExistente(String documento) {
         try {
@@ -133,36 +84,33 @@ public class AdministradorDB {
         }
     }
 
-    public static String LoginAdm(Administrador administrador) {
+    public static Administrador LoginAdm(string email, string senha) {
+        Administrador administrador = null;
         try {
             IDbConnection ObjConexao;
             IDbCommand Comando;
+            IDataReader ObjDataReader;
             ObjConexao = Mapped.Connection();
-            //string sql = @"SELECT a.ADM_EMAIL, a.ADM_SENHA, f.FUN_EMAIL, f.FUN_SENHA 
-            //                FROM adm_administrador a
-            //                 INNER JOIN fun_funcionarios f 
-            //                    ON a.ADM_CPF = f.ADM_CPF
-            //                WHERE a.ADM_EMAIL = ?email AND a.ADM_SENHA = ?senha
-            //                OR f.FUN_EMAIL = ?email AND f.FUN_SENHA = ?senha";
-            string sql = @"SELECT ADM_EMAIL, ADM_SENHA FROM adm_administrador WHERE ADM_SENHA = ?senha && ADM_EMAIL = ?email";
+            string sql = @"SELECT * FROM adm_administrador  WHERE ADM_EMAIL = ?email AND ADM_SENHA = ?senha";
             Comando = Mapped.Command(sql, ObjConexao);
-            Comando.Parameters.Add(Mapped.Parameter("?email", administrador.Email));
-            Comando.Parameters.Add(Mapped.Parameter("?senha", administrador.Senha));
-            var resultado = Comando.ExecuteScalar();
-            Comando.Dispose();
-            ObjConexao.Close();
-            ObjConexao.Dispose();
-
-            if (resultado != null) {
-                return "Sucesso";
-            } else {
-                return "Erro";
+            Comando.Parameters.Add(Mapped.Parameter("?email", email));
+            Comando.Parameters.Add(Mapped.Parameter("?senha", senha));
+            ObjDataReader = Comando.ExecuteReader();
+            while (ObjDataReader.Read()) {
+                administrador = new Administrador();
+                administrador.CPF = ObjDataReader["ADM_CPF"].ToString();
+                administrador.Email = ObjDataReader["ADM_EMAIL"].ToString();
+                administrador.NomeEmpresa = ObjDataReader["ADM_NOME_EMPRESA"].ToString();
             }
 
-
+            ObjDataReader.Close();
+            ObjConexao.Dispose();
+            Comando.Dispose();
+            ObjConexao.Close();
+            return administrador;
 
         } catch (Exception e) {
-            return e.Message;
+            return null;
         }
     }
 
@@ -176,7 +124,7 @@ public class AdministradorDB {
             Comando = Mapped.Command(sql, ObjConexao);
             Comando.Parameters.Add(Mapped.Parameter("?cpf", administrador.CPF));
             Comando.Parameters.Add(Mapped.Parameter("?email", administrador.Email));
-            Comando.Parameters.Add(Mapped.Parameter("?senha", administrador.Senha));
+            Comando.Parameters.Add(Mapped.Parameter("?senha",Comuns.HashTexto(administrador.Senha)));
             Comando.Parameters.Add(Mapped.Parameter("?nomeEmpresa", administrador.NomeEmpresa));
             Comando.ExecuteNonQuery();
             ObjConexao.Dispose();
@@ -199,7 +147,7 @@ public class AdministradorDB {
             Comando.Parameters.Add(Mapped.Parameter("?cpf", funcionario.CPF));
             Comando.Parameters.Add(Mapped.Parameter("?nome", funcionario.Nome));
             Comando.Parameters.Add(Mapped.Parameter("?email", funcionario.Email));
-            Comando.Parameters.Add(Mapped.Parameter("?senha", funcionario.Senha));
+            Comando.Parameters.Add(Mapped.Parameter("?senha",Comuns.HashTexto(funcionario.Senha)));
             Comando.Parameters.Add(Mapped.Parameter("?admCpf", funcionario.AdmCPF));
             Comando.ExecuteNonQuery();
             ObjConexao.Dispose();

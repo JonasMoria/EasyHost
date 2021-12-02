@@ -14,63 +14,57 @@ public partial class Pages_Cadastro : System.Web.UI.Page {
 
     protected void btnCriar_Click(object sender, EventArgs e) {
 
-        Administrador adm = new Administrador();
-        adm.CPF = txtDoc.Text;
-        adm.Email = txtCadUsuario.Text;
-        String testeSenha = txtCadSenha.Text;
-        adm.Senha = txtCadRepetirSenha.Text;
-        adm.NomeEmpresa = txtCadNomeEmpresa.Text;
+        if (validaCampos(txtCadUsuario.Text, txtCadSenha.Text, txtCadRepetirSenha.Text, txtDoc.Text, txtCadNomeEmpresa.Text)) {
+            if (validaSenhas(txtCadSenha.Text, txtCadRepetirSenha.Text)) {
+                //Gravar no Banco
+                Administrador adm = new Administrador();
+                adm.CPF = txtDoc.Text;
+                adm.Email = txtCadUsuario.Text;
+                adm.Senha = txtCadRepetirSenha.Text;
+                adm.NomeEmpresa = txtCadNomeEmpresa.Text;
 
-        if (validaStrings(adm.Email, adm.NomeEmpresa) && validaSenhas(txtCadSenha.Text, txtCadRepetirSenha.Text) && validaDocumento(adm.CPF)) {
-
-            if (AdministradorDB.VerificaUsuarioExistente(adm.CPF).Equals("Existe")) {
-                lblTexto.Text = "Usuário Já Existe!";
-                lblTexto.Visible = true;
-            }
-            if (AdministradorDB.VerificaUsuarioExistente(adm.CPF).Equals("NaoExiste")) {
-                if (AdministradorDB.Insert(adm).Equals("Sucesso")) {
-                    lblTexto.Text = "Cadastrado com sucesso! Volte para fazer Login";
+                if (AdministradorDB.VerificaUsuarioExistente(adm.CPF).Equals("Existe")) {
+                    lblTexto.Text = "Usuário Já Existe!";
                     lblTexto.Visible = true;
                 }
+                if (AdministradorDB.VerificaUsuarioExistente(adm.CPF).Equals("NaoExiste")) {
+                    if (AdministradorDB.Insert(adm).Equals("Sucesso")) {
+                        lblTexto.Text = "Cadastrado com sucesso! Volte para fazer Login";
+                        lblTexto.Visible = true;
+                    }
+                }
+
+
+            } else {
+                lblTexto.Visible = true;
+                lblTexto.Text = "Senhas Diferentes, verifique novamente";
             }
 
         } else {
-            lblTexto.Text = "Erro no cadastro. Verifique seus dados";
             lblTexto.Visible = true;
+            lblTexto.Text = "Dados Inválidos, verifique os campos";
         }
+
     }
-
-    private Boolean validaStrings(String email, String empresa) {
-        if (String.IsNullOrWhiteSpace(email) && String.IsNullOrWhiteSpace(empresa)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    private Boolean validaSenhas(String senha, String testeSenha) {
-
-        Boolean autorizado = false;
-
+    private bool validaSenhas(String senha, String testeSenha) {
         if (!String.IsNullOrWhiteSpace(senha) && !String.IsNullOrWhiteSpace(testeSenha)) {
-            if (senha.Length >= 8 && testeSenha.Length >= 8) {
-                if (senha.Equals(testeSenha)) {
-                    autorizado = true;
+            if (senha.Equals(testeSenha)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool validaCampos(string email, string senha, string repSenha, string cpf, string empresa) {
+
+        if (!String.IsNullOrWhiteSpace(email) && !String.IsNullOrWhiteSpace(senha) && !String.IsNullOrWhiteSpace(repSenha) && !String.IsNullOrWhiteSpace(cpf) && !String.IsNullOrWhiteSpace(empresa)) {
+            if (senha.Length >= 8 && repSenha.Length >= 8) {
+                if (cpf.Length == 11 || cpf.Length == 14) {
+                    return true;
                 }
             }
         }
 
-        return autorizado;
-    }
-    private Boolean validaDocumento(String documento) {
-
-        Boolean autorizado = false;
-
-        if (!String.IsNullOrWhiteSpace(documento)) {
-            if (documento.Length == 11 || documento.Length == 14) {
-                autorizado = true;
-            }
-        }
-
-        return autorizado;
+        return false;
     }
 }

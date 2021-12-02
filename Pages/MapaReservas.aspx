@@ -25,7 +25,7 @@
             </div>
         </section>
 
-        <asp:label runat="server" ID="lblUser"/>
+        <asp:Label runat="server" ID="lblUser" />
         <%--Botão Nova Reserva E Selecionar Quarto--%>
         <section class="col-12 row mt-5">
             <div class="col-5">
@@ -34,12 +34,8 @@
                 </button>
             </div>
             <div class="col-7">
-                <asp:DropDownList ID="QuartosDropList" CssClass="btn dropdown-toggle text-white" BackColor="DarkSlateGray"  runat="Server">
-                    <asp:ListItem Text="Selecionar Quarto" Value="1" />
-                    <asp:ListItem Text="Item 2" Value="2" />
-                    <asp:ListItem Text="Item 3" Value="3" />
-                    <asp:ListItem Text="Item 4" Value="4" />
-                    <asp:ListItem Text="Item 5" Value="5" />
+                <asp:DropDownList ID="QuartosDropList" CssClass="btn dropdown-toggle text-white" BackColor="DarkSlateGray" runat="Server">
+                    <asp:ListItem Enabled="true" Text="SELECIONAR QUARTO" Value="-1"></asp:ListItem>
                 </asp:DropDownList>
             </div>
 
@@ -68,11 +64,8 @@
                         <br />
 
                         <div class="col-12 row" style="margin-left: 1%">
-                            <div class="col-6">
-                                <button type="button" class="btn text-white" style="background-color: darkgoldenrod">NOVO HÓSPEDE</button>
-                            </div>
-                            <div class="col-6">
-                                <button type="button" class="btn text-white" style="background-color: darkgoldenrod">NOVA ACOMODAÇÃO</button>
+                            <div class="col-12 text-center">
+                                <button type="button" class="btn text-white" id="btnNovoHosp" data-toggle="modal" data-target="#modalCadHosp" style="background-color: darkgoldenrod">NOVO HÓSPEDE</button>
                             </div>
                         </div>
                     </div>
@@ -84,11 +77,50 @@
             </div>
         </section>
 
+        <%--Modal Cadastro Rapido de Hóspedes--%>
+        <section class="modal fade" id="modalCadHosp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">NOVO HOSPEDE</h5>
+                        <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <section class="col-12 row mt-2">
+                            <div class="form-group">
+                                <asp:Label ID="lblTexto" runat="server" CssClass="text-danger" Text="" Visible="false"></asp:Label>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <asp:Label ID="lblNomeHospede" runat="server" CssClass="text-white mt-2" Text="Nome" />
+                                <asp:TextBox ID="txtNomeHospede" runat="server" CssClass="form-control" placeholder="Nome do Hóspede" />
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="lblTelHospede" runat="server" CssClass="text-white mt-2" Text="Contato" />
+                                <asp:TextBox ID="txtCelHospede" runat="server" CssClass="form-control" placeholder="Contato do Hóspede" />
+                            </div>
+                            <div class="col-12 text-center mt-4" >
+                                <asp:Button runat="server" ID="btnCadHospede" CssClass="btn btn-success text-white border border-dark " Text="CADASTRAR"  />
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" style="background-color: crimson; color: white; border-color: black" class="btn " data-dismiss="modal">CANCELAR</button>
+                        <asp:Button runat="server" ID="Button1" CssClass="btn text-white" Text="CADASTRAR" BackColor="green" BorderColor="Black" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
         <%--Mapa De Reservas--%>
-        <section class="border">
+        <section class="border" style="margin-top: 3%">
             <h1 style="text-align: center">AQUI FICA O CALENDÁRIO</h1>
         </section>
-     
+
     </main>
 
 

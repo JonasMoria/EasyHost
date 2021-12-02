@@ -9,10 +9,8 @@ using System.Web.UI.WebControls;
 public partial class Pages_Hospedes : System.Web.UI.Page {
     protected void Page_Load(object sender, EventArgs e) {
         string url = "http://localhost:52757/";
-        //impedindo o usuario de entrar caso não tenha feito login
-        if (Session["login"] == null) {
+        if (Session["ADM"] == null)
             Response.Redirect(url + "Default.aspx");
-        }
         if (!Page.IsPostBack) {
             CarregarGridView();
         }
@@ -22,13 +20,15 @@ public partial class Pages_Hospedes : System.Web.UI.Page {
     }
 
     protected void btn_CadastrarHos_Click(object sender, EventArgs e) {
+        
+        Administrador adm = (Administrador)Session["ADM"];
         Hospede hos = new Hospede();
         hos.Nome = txtNomeHospede.Text;
         hos.Telefone = txtCelHospede.Text;
-        hos.AdmCPF = Session["getCpf"].ToString();
+        hos.AdmCPF = adm.CPF.ToString();
 
         if (AdministradorDB.Cadastra_Hospede(hos).Equals("Sucesso")) {
-            lblTexto.Text = "Hóspede cadastrado com sucesso!";
+            lblTexto.Text = "Hospede cadastrado com sucesso!";
             lblTexto.Visible = true;
             CarregarGridView();
             txtCelHospede.Text = "";
@@ -40,7 +40,8 @@ public partial class Pages_Hospedes : System.Web.UI.Page {
     }
 
     void CarregarGridView() {
-        DataSet dsUsuarios = AdministradorDB.SelectHospedes(Session["getCpf"].ToString());
+        Administrador adm = (Administrador)Session["ADM"];
+        DataSet dsUsuarios = AdministradorDB.SelectHospedes(adm.CPF.ToString());
         int qtd = dsUsuarios.Tables[0].Rows.Count;
         if (qtd > 0) {
             gdvHospedes.DataSource = dsUsuarios.Tables[0].DefaultView;

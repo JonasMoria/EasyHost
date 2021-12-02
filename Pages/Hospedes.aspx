@@ -40,6 +40,13 @@
 
         <%-- Tabela De Hóspedes--%>
         <div class="row" style="margin-top: 5%">
+            <style>
+                .dt-button {
+                    background-color: goldenrod !important;
+                    color: white !important;
+                    border: none !important;
+                }
+            </style>
             <div class="col-md-12 tabHospedes">
                 <asp:GridView ID="gdvHospedes" runat="server" AutoGenerateColumns="false" CssClass="table table-hover table-borderless tabela" OnRowDataBound="gdvHospedes_RowDataBound">
                     <Columns>
@@ -75,7 +82,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" style="background-color: forestgreen; color: white; border-color: black" class="btn " data-dismiss="modal">CANCELAR</button>
-                        <asp:Button runat="server" ID="btnExcluirFunc" Onclick="btnExcluirFunc_Click" CssClass="btn text-white bg-danger" Text="EXCLUIR" BackColor="green" BorderColor="Black" />
+                        <asp:Button runat="server" ID="btnExcluirFunc" OnClick="btnExcluirFunc_Click" CssClass="btn text-white bg-danger" Text="EXCLUIR" BackColor="green" BorderColor="Black" />
                     </div>
                 </div>
             </div>

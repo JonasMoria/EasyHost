@@ -14,10 +14,8 @@ public partial class Pages_Funcionarios : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
         string url = "http://localhost:52757/";
-        //impedindo o usuario de entrar caso não tenha feito login
-        if (Session["login"] == null) {
+        if (Session["ADM"] == null)
             Response.Redirect(url + "Default.aspx");
-        }
         if (!Page.IsPostBack) {
             CarregarGridView();
         }
@@ -27,19 +25,20 @@ public partial class Pages_Funcionarios : System.Web.UI.Page {
     }
 
     protected void btn_CadasdastrarFun_Click(object sender, EventArgs e) {
-
+        
+        Administrador adm = (Administrador)Session["ADM"];
         Funcionario fun = new Funcionario();
 
         fun.CPF = txtCPFFuncionario.Text;
         fun.Nome = txtCadFuncionario.Text;
         fun.Email = txtEmailFuncionario.Text;
         fun.Senha = txtRepSenhaFuncionario.Text;
-        string repSenha = txtSenhaFuncionario.Text;
-        fun.AdmCPF = Session["getCpf"].ToString();
+        string repSenha = txtRepSenhaFuncionario.Text;
+        fun.AdmCPF = adm.CPF.ToString();
 
         if (validaCadastro(fun, repSenha)) {
             if (AdministradorDB.Cadastra_Funcionario(fun).Equals("Sucesso")) {
-                lblTexto.Text = "Funcionário cadastrado com sucesso!";
+                lblTexto.Text = "Funcionario cadastrado com sucesso!";
                 lblTexto.Visible = true;
                 CarregarGridView();
                 txtCPFFuncionario.Text = "";
@@ -68,7 +67,8 @@ public partial class Pages_Funcionarios : System.Web.UI.Page {
         return false;
     }
     void CarregarGridView() {
-        DataSet dsUsuarios = AdministradorDB.SelectFuncionarios(Session["getCpf"].ToString());
+        Administrador adm = (Administrador)Session["ADM"];
+        DataSet dsUsuarios = AdministradorDB.SelectFuncionarios(adm.CPF);
         int qtd = dsUsuarios.Tables[0].Rows.Count;
         if (qtd > 0) {
             gdvFuncionarios.DataSource = dsUsuarios.Tables[0].DefaultView;
