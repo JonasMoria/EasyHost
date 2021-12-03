@@ -20,7 +20,7 @@
         <div>
 
             <%--MenuLateral--%>
-            <div class="menuLateral" id="menuLateral">
+            <div class="menuLateral" id="menuLateral" style="background-color: #00A19D;">
                 <button class="btnFechar" type="button" id="btnFechar">&times;</button>
                 <br>
                 <br>
@@ -43,12 +43,12 @@
                 </section>
             </div>
             <%--Nav--%>
-            <nav class="navbar navbar-dark bg-dark col-12 row" style="margin-left: 5%; width: 100%">
+            <nav class="navbar col-12 row" style="margin-left: 5%; width: 100%; background-color: #00A19D;">
                 <div class="col-2">
                     <button id="btnAbrir" type="button" class="btnAbrir">&#9776</button>
                 </div>
                 <div class="col-6 text-center">
-                    <h2 style="color: white; padding-top: 1%">EASYHOST</h2>
+                    <h2 style="color: #FFB344; padding-top: 1%">EasyHost</h2>
                 </div>
                 <div class="col-4 row " style="float: right">
                     <button type="button" class="btn btn-secondary col-4 m-2 color-white"><i class="fa fa-cog"></i></button>
