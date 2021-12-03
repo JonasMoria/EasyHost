@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
 
-    <main class="pagina" id="pagina">
+    <main class="pagina" id="pagina" style="background-color: #FFF8E5">
 
         <%--Localização Do Usuario--%>
         <section class="col-12 row p-2 local">
@@ -14,7 +14,7 @@
                 <h2>Cadastrar Quartos</h2>
             </div>
             <div class="col-8 pt-3">
-                <h6 style="float: right; margin-right: 10%"><strong style="color: blue">HOME</strong> / Quartos</h6>
+                <h6 style="float: right; margin-right: 10%"><strong style="color: #FFB344">HOME</strong> / Quartos</h6>
             </div>
         </section>
 
