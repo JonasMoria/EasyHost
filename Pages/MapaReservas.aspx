@@ -13,7 +13,7 @@
         }
     </style>
 
-    <main class="pagina" id="pagina">
+    <main class="pagina" id="pagina" style="background-color: #FFF8E5">
 
         <%--Localização Do Usuario--%>
         <section class="col-12 row p-2 local">
@@ -21,7 +21,7 @@
                 <h2>Mapa De Reservas</h2>
             </div>
             <div class="col-8 pt-3">
-                <h6 style="float: right; margin-right: 10%"><strong style="color: blue">HOME</strong> / Mapa de Reservas</h6>
+                <h6 style="float: right; margin-right: 10%"><strong style="color: #FFB344">HOME</strong> / Mapa de Reservas</h6>
             </div>
         </section>
 
@@ -45,13 +45,13 @@
         <section class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header" style="background-color: #00A19D">
                         <h5 class="modal-title" id="exampleModalLabel">NOVA RESERVA</h5>
                         <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
                             <i class="fa fa-times"></i>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="background-color: #00A19D">
                         <asp:Label ID="lblCheckIn" runat="server" CssClass="labels" Text="&nbsp  INDISPONÍVEL  &nbsp" />
                         <asp:TextBox ID="txtCheckIn" runat="server" CssClass="form-control" TextMode="Date" />
                         <br />
@@ -65,13 +65,13 @@
 
                         <div class="col-12 row" style="margin-left: 1%">
                             <div class="col-12 text-center">
-                                <button type="button" class="btn text-white" id="btnNovoHosp" data-toggle="modal" data-target="#modalCadHosp" style="background-color: darkgoldenrod">NOVO HÓSPEDE</button>
+                                <button type="button" class="btn text-white" id="btnNovoHosp" data-toggle="modal" data-target="#modalCadHosp" style="background-color: #FFB344">Novo Hóspede</button>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" style="background-color: crimson; color: white; border-color: black" class="btn " data-dismiss="modal">CANCELAR</button>
-                        <asp:Button runat="server" ID="btnReservar" CssClass="btn text-white" Text="RESERVAR" BackColor="green" BorderColor="Black" />
+                    <div class="modal-footer" style="background-color: #00A19D">
+                        <button type="button" style="background-color: #E05D5D; color: white; border-color: none" class="btn " data-dismiss="modal">Cancelar</button>
+                        <asp:Button runat="server" ID="btnReservar" CssClass="btn text-white" Text="Reservar" BackColor="green" BorderColor="" />
                     </div>
                 </div>
             </div>
@@ -81,13 +81,13 @@
         <section class="modal fade" id="modalCadHosp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header" style="background-color: #00A19D">
                         <h5 class="modal-title" id="">NOVO HOSPEDE</h5>
                         <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
                             <i class="fa fa-times"></i>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="background-color: #00A19D">
                         <section class="col-12 row mt-2">
                             <div class="form-group">
                                 <asp:Label ID="lblTexto" runat="server" CssClass="text-danger" Text="" Visible="false"></asp:Label>
@@ -102,13 +102,13 @@
                                 <asp:TextBox ID="txtCelHospede" runat="server" CssClass="form-control" placeholder="Contato do Hóspede" />
                             </div>
                             <div class="col-12 text-center mt-4" >
-                                <asp:Button runat="server" ID="btnCadHospede" CssClass="btn btn-success text-white border border-dark " Text="CADASTRAR"  />
+                                <asp:Button runat="server" ID="btnCadHospede" CssClass="btn btn-success text-white" Text="Cadastrar"  />
                             </div>
                         </section>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" style="background-color: crimson; color: white; border-color: black" class="btn " data-dismiss="modal">CANCELAR</button>
-                        <asp:Button runat="server" ID="Button1" CssClass="btn text-white" Text="CADASTRAR" BackColor="green" BorderColor="Black" />
+                    <div class="modal-footer" style="background-color: #00A19D">
+                        <button type="button" style="background-color: #E05D5D; color: white; border-color: none" class="btn " data-dismiss="modal">Cancelar</button>
+                        <asp:Button runat="server" ID="Button1" CssClass="btn text-white" Text="Cadastrar" BackColor="green" BorderColor="" />
                     </div>
                 </div>
             </div>
