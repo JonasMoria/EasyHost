@@ -6,55 +6,44 @@ using System.Web;
 /// <summary>
 /// Descrição resumida de Quarto
 /// </summary>
-public class Quarto
-{
+public class Quarto {
 
     private string _Nome;
     private string _Situacao;
     private string _AdmCPF;
-    
-    public Quarto()
-    {
+
+    public Quarto() {
         //
         // TODO: Adicionar lógica do construtor aqui
         //
     }
 
-    public string Nome
-    {
-        get
-        {
+    public string Nome {
+        get {
             return _Nome;
         }
 
-        set
-        {
+        set {
             _Nome = value;
         }
     }
 
-    public string Situacao
-    {
-        get
-        {
+    public string Situacao {
+        get {
             return _Situacao;
         }
 
-        set
-        {
+        set {
             _Situacao = value;
         }
     }
 
-    public string AdmCPF
-    {
-        get
-        {
+    public string AdmCPF {
+        get {
             return _AdmCPF;
         }
 
-        set
-        {
+        set {
             _AdmCPF = value;
         }
     }

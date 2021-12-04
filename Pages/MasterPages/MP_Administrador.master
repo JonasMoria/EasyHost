@@ -20,6 +20,11 @@
         <div>
 
             <%--MenuLateral--%>
+            <style>
+                .menuLateral {
+                    z-index: 2;
+                }
+            </style>
             <div class="menuLateral" id="menuLateral" style="background-color: #00A19D;">
                 <button class="btnFechar" type="button" id="btnFechar">&times;</button>
                 <br>

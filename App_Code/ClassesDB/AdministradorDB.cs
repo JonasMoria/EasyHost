@@ -9,6 +9,49 @@ using System.Web;
 /// </summary>
 public class AdministradorDB {
 
+
+    public static String ReservarAdm(Reserva reserva) {
+
+        try {
+            IDbConnection ObjConexao;
+            IDbCommand Comando;
+            ObjConexao = Mapped.Connection();
+            string sql = @"INSERT INTO res_reservas VALUES (?checkin, ?checkout, ?cpf, ?fun, ?qua,?hos);";
+            Comando = Mapped.Command(sql, ObjConexao);
+            Comando.Parameters.Add(Mapped.Parameter("?checkin", reserva.CheckIn));
+            Comando.Parameters.Add(Mapped.Parameter("?checkout", reserva.CheckOut));
+            Comando.Parameters.Add(Mapped.Parameter("?cpf", reserva.AdmCPF));
+            Comando.Parameters.Add(Mapped.Parameter("?fun", reserva.FunCPF = null));
+            Comando.Parameters.Add(Mapped.Parameter("?qua", reserva.Quarto));
+            Comando.Parameters.Add(Mapped.Parameter("?hos", reserva.Hospede));
+            Comando.ExecuteNonQuery();
+            ObjConexao.Dispose();
+            Comando.Dispose();
+            ObjConexao.Close();
+            return "Sucesso";
+        } catch (Exception e) {
+
+            return e.Message;
+        }
+
+    }
+    public static DataSet SelectReservas(String cpf) {
+        DataSet ds = new DataSet();
+        IDbConnection ObjConexao;
+        IDbCommand Comando;
+        IDataAdapter Adapter;
+        ObjConexao = Mapped.Connection();
+        string sql = @"SELECT * FROM res_reservas  WHERE ADM_CPF = ?cpf";
+        Comando = Mapped.Command(sql, ObjConexao);
+        Comando.Parameters.Add(Mapped.Parameter("?cpf", cpf));
+        Adapter = Mapped.Adapter(Comando);
+        Adapter.Fill(ds);
+        ObjConexao.Close();
+        Comando.Dispose();
+        ObjConexao.Dispose();
+        return ds;
+    }
+
     public static DataSet SelectQuartos(String cpf) {
         DataSet ds = new DataSet();
         IDbConnection ObjConexao;
@@ -124,7 +167,7 @@ public class AdministradorDB {
             Comando = Mapped.Command(sql, ObjConexao);
             Comando.Parameters.Add(Mapped.Parameter("?cpf", administrador.CPF));
             Comando.Parameters.Add(Mapped.Parameter("?email", administrador.Email));
-            Comando.Parameters.Add(Mapped.Parameter("?senha",Comuns.HashTexto(administrador.Senha)));
+            Comando.Parameters.Add(Mapped.Parameter("?senha", Comuns.HashTexto(administrador.Senha)));
             Comando.Parameters.Add(Mapped.Parameter("?nomeEmpresa", administrador.NomeEmpresa));
             Comando.ExecuteNonQuery();
             ObjConexao.Dispose();
@@ -147,7 +190,7 @@ public class AdministradorDB {
             Comando.Parameters.Add(Mapped.Parameter("?cpf", funcionario.CPF));
             Comando.Parameters.Add(Mapped.Parameter("?nome", funcionario.Nome));
             Comando.Parameters.Add(Mapped.Parameter("?email", funcionario.Email));
-            Comando.Parameters.Add(Mapped.Parameter("?senha",Comuns.HashTexto(funcionario.Senha)));
+            Comando.Parameters.Add(Mapped.Parameter("?senha", Comuns.HashTexto(funcionario.Senha)));
             Comando.Parameters.Add(Mapped.Parameter("?admCpf", funcionario.AdmCPF));
             Comando.ExecuteNonQuery();
             ObjConexao.Dispose();
